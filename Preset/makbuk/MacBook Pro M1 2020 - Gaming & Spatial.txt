@@ -1,0 +1,9 @@
+Device: MacBook Pro M1 2020 - Gaming & Spatial (80% Vol)
+Preamp: -3.5 dB
+Filter 1: ON LSC Fc 80 Hz Gain -5.0 dB Q 0.70
+Filter 2: ON PK Fc 140 Hz Gain 1.2 dB Q 1.50
+Filter 3: ON PK Fc 380 Hz Gain -3.0 dB Q 1.30
+Filter 4: ON PK Fc 2000 Hz Gain 3.2 dB Q 1.40
+Filter 5: ON PK Fc 3800 Hz Gain -2.8 dB Q 1.80
+Filter 6: ON PK Fc 6800 Hz Gain -3.0 dB Q 2.50
+Filter 7: ON HSC Fc 11000 Hz Gain 1.8 dB Q 0.70

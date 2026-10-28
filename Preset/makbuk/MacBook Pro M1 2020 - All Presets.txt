@@ -1,0 +1,56 @@
+Device: MacBook Pro M1 2020 - Balanced & Clean (Loud & Safe 80-90%)
+Preamp: -0.5 dB
+Filter 1: ON LSC Fc 85 Hz Gain -6.0 dB Q 0.75
+Filter 2: ON PK Fc 145 Hz Gain 0.5 dB Q 1.60
+Filter 3: ON PK Fc 480 Hz Gain -1.8 dB Q 1.50
+Filter 4: ON PK Fc 1200 Hz Gain 1.8 dB Q 1.20
+Filter 5: ON PK Fc 3300 Hz Gain -1.2 dB Q 1.60
+Filter 6: ON PK Fc 6500 Hz Gain -1.5 dB Q 2.20
+Filter 7: ON HSC Fc 11000 Hz Gain 1.5 dB Q 0.70
+
+Device: MacBook Pro M1 2020 - Bass Boost & Music (Loud & Safe 80-90%)
+Preamp: -1.8 dB
+Filter 1: ON LSC Fc 85 Hz Gain -6.5 dB Q 0.75
+Filter 2: ON PK Fc 135 Hz Gain 2.5 dB Q 1.60
+Filter 3: ON PK Fc 400 Hz Gain -2.0 dB Q 1.50
+Filter 4: ON PK Fc 1800 Hz Gain 2.0 dB Q 1.30
+Filter 5: ON PK Fc 3600 Hz Gain -1.5 dB Q 1.80
+Filter 6: ON PK Fc 6200 Hz Gain -1.5 dB Q 2.20
+Filter 7: ON HSC Fc 10500 Hz Gain 1.8 dB Q 0.70
+
+Device: MacBook Pro M1 2020 - Movies & Cinematic (Loud & Safe 80-90%)
+Preamp: -1.8 dB
+Filter 1: ON LSC Fc 85 Hz Gain -6.0 dB Q 0.75
+Filter 2: ON PK Fc 140 Hz Gain 2.0 dB Q 1.50
+Filter 3: ON PK Fc 450 Hz Gain -1.8 dB Q 1.40
+Filter 4: ON PK Fc 1700 Hz Gain 3.0 dB Q 1.20
+Filter 5: ON PK Fc 3200 Hz Gain -1.2 dB Q 1.70
+Filter 6: ON PK Fc 6000 Hz Gain -2.0 dB Q 2.00
+Filter 7: ON HSC Fc 9500 Hz Gain 2.0 dB Q 0.70
+
+Device: MacBook Pro M1 2020 - Voice & Podcast (Loud & Safe 80-90%)
+Preamp: -1.0 dB
+Filter 1: ON LSC Fc 115 Hz Gain -8.0 dB Q 0.75
+Filter 2: ON PK Fc 350 Hz Gain -2.5 dB Q 1.50
+Filter 3: ON PK Fc 1500 Hz Gain 3.0 dB Q 1.10
+Filter 4: ON PK Fc 2800 Hz Gain 2.5 dB Q 1.50
+Filter 5: ON PK Fc 6200 Hz Gain -3.5 dB Q 2.50
+Filter 6: ON HSC Fc 10000 Hz Gain -3.0 dB Q 0.70
+
+Device: MacBook Pro M1 2020 - Gaming & Spatial (Loud & Safe 80-90%)
+Preamp: -1.8 dB
+Filter 1: ON LSC Fc 85 Hz Gain -6.0 dB Q 0.75
+Filter 2: ON PK Fc 145 Hz Gain 1.5 dB Q 1.60
+Filter 3: ON PK Fc 380 Hz Gain -2.0 dB Q 1.40
+Filter 4: ON PK Fc 2000 Hz Gain 3.2 dB Q 1.30
+Filter 5: ON PK Fc 3800 Hz Gain -1.5 dB Q 1.80
+Filter 6: ON PK Fc 6800 Hz Gain -2.2 dB Q 2.50
+Filter 7: ON HSC Fc 11000 Hz Gain 2.0 dB Q 0.70
+
+Device: MacBook Pro M1 2020 - Night Mode (Loud & Safe 80-90%)
+Preamp: 0.0 dB
+Filter 1: ON LSC Fc 100 Hz Gain -6.5 dB Q 0.75
+Filter 2: ON PK Fc 250 Hz Gain 1.5 dB Q 1.30
+Filter 3: ON PK Fc 1100 Hz Gain 1.8 dB Q 1.00
+Filter 4: ON PK Fc 3200 Hz Gain -2.0 dB Q 1.50
+Filter 5: ON HSC Fc 7500 Hz Gain -3.5 dB Q 0.70

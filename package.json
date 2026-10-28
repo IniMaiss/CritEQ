@@ -1,0 +1,45 @@
+{
+  "name": "criteq",
+  "productName": "CritEQ",
+  "version": "1.0.0",
+  "description": "CritEQ: High-precision Neubrutalist Equalizer for macOS with Audio EQ Cookbook DSP, PEQ APO support, and low-latency CoreAudio engine",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "npm run build:main && npm run build:native && npm run build:renderer",
+    "build:main": "tsc",
+    "build:native": "mkdir -p dist/main && swiftc -O src/native/native-audio-engine.swift -o dist/main/native-audio-engine",
+    "build:renderer": "vite build",
+    "start": "electron .",
+    "dev:renderer": "vite",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "icon": "mkdir -p build && swift scripts/generate-icon.swift && iconutil -c icns build/AppIcon.iconset -o build/icon.icns",
+    "package": "rm -rf release CritEQ.app && npm run build && npm run icon && electron-packager . CritEQ --platform=darwin --arch=arm64 --out=release --overwrite --asar --ignore=\"^/(release|CritEQ\\.app|src|tests|coverage|Preset|build|scripts|tasks|anti-slop|Windows porting|\\.git|tsconfig\\.json|vite\\.config\\.ts|vitest\\.config\\.ts|design\\.md)\" --icon=build/icon --app-bundle-id=com.criteq.app --app-category-type=public.app-category.music --extra-resource=dist/main/native-audio-engine && codesign --force --deep --sign - release/CritEQ-darwin-arm64/CritEQ.app && mv release/CritEQ-darwin-arm64/CritEQ.app ./CritEQ.app && rm -rf release"
+  },
+  "keywords": [
+    "criteq",
+    "equalizer",
+    "parametric-equalizer",
+    "biquad",
+    "dsp",
+    "audio",
+    "equalizer-apo",
+    "peq"
+  ],
+  "author": "CritEQ Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "^2.1.8",
+    "electron": "^45.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.21",
+    "vitest": "^2.1.8"
+  }
+}

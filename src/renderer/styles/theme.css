@@ -1,0 +1,294 @@
+/**
+ * CritEQ — Precision Mastering Dark Design System.
+ * Guided by design.md (Option 1: FabFilter Pro-Q 3 / Crave EQ style):
+ * - Deep obsidian acoustic analyzer surfaces (#080A0F, #0E1117, #151922)
+ * - Hairline 1px structural borders (rgba(255, 255, 255, 0.08))
+ * - Warm Mastering Amber primary accent (#F5A623) & Precision Cyan secondary (#38BDF8)
+ * - Clean system UI typography + tabular monospace telemetry
+ */
+
+:root {
+  /* Core Palette */
+  --primary: #f5a623;
+  --primary-hover: #fbbf24;
+  --primary-muted: rgba(245, 166, 35, 0.16);
+  --secondary: #f43f5e;
+  --secondary-hover: #fb7185;
+  --tertiary: #38bdf8;
+  --neutral: #080a0f;
+
+  /* Studio Surfaces */
+  --dark: #080a0f;
+  --background: #0e1117;
+  --background-darker: #141821;
+  --background-darkest: #080a0f;
+  --background-lighter: #1c222e;
+  --background-elevated: #232a38;
+  --foreground: #f3f4f6;
+
+  /* Semantic Accents */
+  --accent: #f5a623;
+  --brand: #f5a623;
+  --success: #10b981;
+  --warning: #f43f5e;
+
+  /* Shared Component Tokens */
+  --bg-app: #0e1117;
+  --bg-surface: #141821;
+  --bg-surface-elevated: #1c222e;
+  --bg-surface-hover: #252c3b;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-accent: rgba(245, 166, 35, 0.65);
+
+  --accent-cyan: #38bdf8;
+  --accent-blue: #38bdf8;
+  --accent-green: #10b981;
+  --accent-orange: #fb923c;
+  --accent-purple: #c084fc;
+  --accent-red: #f43f5e;
+
+  /* High-Contrast Studio Text (WCAG AA >= 4.5:1) */
+  --text-primary: #f3f4f6;
+  --text-secondary: #a8b1c2;
+  --text-muted: #7e889b;
+
+  /* Precision Hairline Geometry & Subtle Studio Depth */
+  --border-width: 1px;
+  --border-thick: 1px;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-btn-hover: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-sm: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-active: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Precision Studio Buttons */
+button {
+  background: var(--background-lighter);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 5px 11px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+button:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  color: #ffffff;
+}
+
+button:active {
+  background: var(--background-darker);
+  box-shadow: var(--shadow-active);
+}
+
+button.primary {
+  background: var(--primary);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #080a0f;
+  font-weight: 600;
+}
+
+button.primary:hover {
+  background: var(--primary-hover);
+  color: #080a0f;
+}
+
+button.danger {
+  background: rgba(244, 63, 94, 0.14);
+  border-color: rgba(244, 63, 94, 0.35);
+  color: #fda4af;
+  font-weight: 500;
+}
+
+button.danger:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: #080a0f;
+}
+
+button.active-toggle {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: var(--secondary);
+  color: #fda4af;
+  font-weight: 600;
+}
+
+/* Keyboard Accessible Focus Rings (WCAG AA & R-32) */
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+[tabindex='0']:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Studio Inputs & Selects */
+select,
+input[type='text'],
+input[type='number'] {
+  background: var(--background-darkest);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 500;
+  outline: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.14s ease, background 0.14s ease;
+}
+
+select:hover,
+input[type='text']:hover,
+input[type='number']:hover {
+  border-color: var(--border-strong);
+}
+
+select:focus,
+input:focus {
+  border-color: var(--primary);
+}
+
+/* Precision Toggle Checkbox */
+input[type='checkbox'] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--background-darkest);
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+input[type='checkbox']:hover {
+  border-color: var(--primary);
+}
+
+input[type='checkbox']:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+input[type='checkbox']:checked::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #080a0f;
+  border-radius: 1px;
+}
+
+/* Color Swatch */
+.eqm-color-swatch {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.eqm-color-swatch::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.eqm-color-swatch::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+/* Recessed Digital Readout Screen */
+.eqm-value-screen {
+  background: rgba(8, 10, 15, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  padding: 3px 6px;
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.eqm-value-screen:hover {
+  border-color: var(--border-strong);
+  background: rgba(14, 17, 24, 0.95);
+}
+
+.eqm-value-screen.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Subtle Custom Scrollbars for Band Console */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.26);
+}

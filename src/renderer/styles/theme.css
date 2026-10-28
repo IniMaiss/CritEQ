@@ -8,38 +8,38 @@
  */
 
 :root {
-  /* Core Palette */
-  --primary: #f5a623;
-  --primary-hover: #fbbf24;
-  --primary-muted: rgba(245, 166, 35, 0.16);
+  /* Core Palette — Minimalist Precision Studio (Clean Obsidian + Precision Cyan) */
+  --primary: #38bdf8;
+  --primary-hover: #7dd3fc;
+  --primary-muted: rgba(56, 189, 248, 0.12);
   --secondary: #f43f5e;
   --secondary-hover: #fb7185;
-  --tertiary: #38bdf8;
-  --neutral: #080a0f;
+  --tertiary: #a855f7;
+  --neutral: #07090e;
 
   /* Studio Surfaces */
-  --dark: #080a0f;
-  --background: #0e1117;
-  --background-darker: #141821;
-  --background-darkest: #080a0f;
-  --background-lighter: #1c222e;
-  --background-elevated: #232a38;
-  --foreground: #f3f4f6;
+  --dark: #07090e;
+  --background: #090c13;
+  --background-darker: #0d111a;
+  --background-darkest: #06080c;
+  --background-lighter: #161b26;
+  --background-elevated: #1e2433;
+  --foreground: #f8fafc;
 
   /* Semantic Accents */
-  --accent: #f5a623;
-  --brand: #f5a623;
+  --accent: #38bdf8;
+  --brand: #38bdf8;
   --success: #10b981;
   --warning: #f43f5e;
 
   /* Shared Component Tokens */
-  --bg-app: #0e1117;
-  --bg-surface: #141821;
-  --bg-surface-elevated: #1c222e;
-  --bg-surface-hover: #252c3b;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.15);
-  --border-accent: rgba(245, 166, 35, 0.65);
+  --bg-app: #090c13;
+  --bg-surface: #0d111a;
+  --bg-surface-elevated: #161b26;
+  --bg-surface-hover: #1e2433;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --border-accent: rgba(56, 189, 248, 0.45);
 
   --accent-cyan: #38bdf8;
   --accent-blue: #38bdf8;

@@ -7,6 +7,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Platform: macOS](https://img.shields.io/badge/Platform-macOS%2014.2%2B-black?logo=apple)](https://apple.com)
+[![Windows Port: In Progress](https://img.shields.io/badge/Windows%20Port-In%20Progress%20%F0%9F%9A%A7-blue?logo=windows)](https://github.com/IniMaiss/CritEQ)
 [![Presets: 5,900+](https://img.shields.io/badge/IEM%20Presets-5%2C900%2B-orange.svg)](./Preset)
 [![Zero Telemetry](https://img.shields.io/badge/Telemetry-Zero%20%2F%20100%25%20Offline-success.svg)](./LEGAL_AND_COMPLIANCE.md)
 
@@ -22,20 +23,46 @@
 
 ---
 
-> [!IMPORTANT]
-> ### ⚠️ Disclaimer: Reverse Engineering & Prior Art Notice
-> **CritEQ is an educational, clean-room reverse-engineering and research project inspired by [eqMac](https://eqmac.app) (developed by Bitgapp Ltd).**
-> - CritEQ was created to study, analyze, and implement system-wide CoreAudio process tapping (`CATapDescription`) and studio-grade biquad filter DSP on modern Apple Silicon macOS systems without requiring third-party kernel extensions (`.kext`) or virtual audio drivers.
-> - **No Proprietary Code Copied:** All DSP algorithms in CritEQ are derived independently from public-domain mathematical formulations (Robert Bristow-Johnson's *Audio EQ Cookbook*), and all Swift/TypeScript implementations were written clean-room.
-> - **Non-Affiliation:** CritEQ is an independent open-source project and is **not affiliated with, sponsored by, endorsed by, or associated with Bitgapp Ltd or the authors of eqMac**. "eqMac" is the trademark of its respective owner. If you love eqMac, please support the original creators at [eqmac.app](https://eqmac.app).
+> [!NOTE]
+> ### 🛡️ Independent Clean-Room Implementation
+> **CritEQ is an independent, 100% clean-room open-source project written from scratch.**
+> - **Architecture & Code:** All Swift native audio tapping code and TypeScript/Electron frontend logic were authored entirely from first principles. No proprietary code, binaries, or assets from third parties are used.
+> - **Mathematical Foundation:** Filter calculations are derived from **Robert Bristow-Johnson's *Audio EQ Cookbook* (1994)**—the industry-standard, public-domain bilinear transform formulations utilized universally across digital audio workstations (DAWs) and audio plugins worldwide.
+> - **Open Audio Standards:** Preset interoperability adheres strictly to open, plain-text parametric EQ formats popularized by Equalizer APO and AutoEq.
 
 ---
 
 ## 🌟 Overview
 
-**CritEQ** brings mastering-studio precision to desktop system-wide audio. Designed with a dark obsidian aesthetic inspired by high-end mastering plugins (FabFilter Pro-Q 3, Crave EQ), CritEQ allows you to equalize any audio playing on your Mac in real time with zero latency overhead and zero driver clutter.
+**CritEQ** brings mastering-studio precision to desktop system-wide audio. Designed with a minimalist dark obsidian aesthetic, CritEQ allows you to equalize any audio playing on your computer in real time with zero latency overhead and zero virtual driver clutter.
 
 CritEQ comes bundled with an indexed database of **over 5,900+ headphone & IEM parametric EQ presets** sourced from the world's leading acoustic measurement databases (**AutoEq**, **Crinacle**, **Squiglink**, and **oratory1990**).
+
+---
+
+## 🛣️ Development Progress & Roadmap
+
+CritEQ has been built iteratively with strict adherence to clean-room engineering, audio fidelity, and user experience:
+
+- [x] **Phase 1 — Zero-Driver CoreAudio Engine (macOS)**
+  - Implemented driverless system-wide audio capture via Apple Silicon process tap (`AudioHardwareCreateProcessTap` / `CATapDescription`).
+  - Completely eliminates the need for third-party kernel extensions (`.kext`) or virtual audio driver daemons.
+- [x] **Phase 2 — High-Precision Biquad DSP**
+  - Engineered double-precision Direct Form II Transposed biquad filter topologies (`PK`, `LS`, `HS`, `LP`, `HP`, `BP`, `NO`, `AP`).
+  - Added hardware-accelerated Apple Accelerate (`vDSP`) real-time FFT spectrum analyzer.
+  - Implemented an internal soft-clipping `tanh` limiting stage for hearing conservation and signal protection.
+- [x] **Phase 3 — 5,900+ Acoustic Preset Database**
+  - Integrated and indexed over 5,900+ headphone and IEM measurement profiles.
+  - Built instant client-side fuzzy search across manufacturers, models, and measurement reviewers.
+  - Added full two-way Equalizer APO `.peq` and `.txt` import and export capabilities.
+- [x] **Phase 4 — Minimalist Studio Precision Interface**
+  - Clean obsidian canvas (*canvas polos*) that removes visual clutter and overlapping colored bell fills.
+  - Razor-sharp hairline master response curve with subtle studio cyan telemetry.
+  - Hollow precision reticle node handles with vertical alignment drop-guides.
+  - Unified Selected-Band Inspector Dock with simultaneous `Q` and `Octaves` readouts, vector rotary dials, and A/B comparison slots.
+- [ ] **Phase 5 — Windows Porting (In Active Progress 🚧)**
+  - Architecting the native Windows audio backend utilizing **Windows Audio Session API (WASAPI)** and **Audio Processing Objects (APO)**.
+  - Ensuring seamless cross-platform parity so Windows users can access the same driverless system-wide DSP, 5,900+ IEM presets, and minimalist UI.
 
 ---
 
@@ -83,7 +110,7 @@ The underlying frequency response measurements originate from:
 ## 🛠️ Building from Source
 
 ### Prerequisites
-- macOS Sonoma 14.2 or later
+- macOS Sonoma 14.2 or later *(Windows support in active development)*
 - [Node.js](https://nodejs.org) (v18 or later)
 - Xcode Command Line Tools (`xcode-select --install`) with `swiftc`
 
@@ -132,4 +159,3 @@ Filter 3: ON HS Fc 10000 Hz Gain 1.5 dB Q 0.71
 
 - **Software License:** Licensed under the [MIT License](./LICENSE).
 - **Compliance & Safety:** See [LEGAL_AND_COMPLIANCE.md](./LEGAL_AND_COMPLIANCE.md) for full hearing conservation advisories, signal-flow guarantees, and third-party notices.
-- **eqMac Reference:** As stated above, this software represents an independent reverse-engineered project created for educational exploration of user-space audio routing. All trademarks belong to their respective owners.

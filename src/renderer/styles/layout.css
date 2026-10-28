@@ -84,7 +84,7 @@
   color: var(--primary);
   padding: 1px 5px;
   border-radius: 3px;
-  border: 1px solid rgba(245, 166, 35, 0.35);
+  border: 1px solid rgba(56, 189, 248, 0.35);
   letter-spacing: 0.6px;
 }
 
@@ -112,7 +112,7 @@
   max-width: 140px;
   font-weight: 600;
   color: var(--primary);
-  border-color: rgba(245, 166, 35, 0.35);
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .eqm-brand-select:hover {
@@ -125,7 +125,7 @@
 
 #btn-save-preset {
   background: var(--primary-muted);
-  border-color: rgba(245, 166, 35, 0.4);
+  border-color: rgba(56, 189, 248, 0.35);
   color: var(--primary-hover);
   font-weight: 600;
 }
@@ -299,7 +299,7 @@
 
 .eqm-pill-btn.active {
   background: var(--primary-muted);
-  border-color: rgba(245, 166, 35, 0.45);
+  border-color: rgba(56, 189, 248, 0.45);
   color: var(--primary-hover);
   font-weight: 600;
 }
@@ -367,7 +367,7 @@
   background: var(--primary);
   color: #06080c;
   font-weight: 800;
-  box-shadow: 0 0 8px rgba(245, 166, 35, 0.45);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.45);
 }
 
 .btn-copy-slot {
@@ -684,15 +684,15 @@
 }
 
 .eqm-band-tab.highlighted {
-  border-color: rgba(245, 166, 35, 0.55);
+  border-color: rgba(56, 189, 248, 0.55);
   color: var(--text-primary);
 }
 
 .eqm-band-tab.selected {
-  background: rgba(245, 166, 35, 0.16);
+  background: rgba(56, 189, 248, 0.12);
   border-color: var(--primary);
   color: var(--text-primary);
-  box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.2);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.2);
 }
 
 .eqm-band-tab.bypassed {
@@ -701,7 +701,7 @@
 
 .eqm-band-tab.soloed {
   border-color: var(--primary);
-  box-shadow: 0 0 10px rgba(245, 166, 35, 0.25);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
 }
 
 .eqm-band-tab.solo-muted {
@@ -741,8 +741,8 @@
   justify-content: center;
   height: 30px;
   padding: 0 13px;
-  background: #0b0e15;
-  border: 1px dashed rgba(245, 166, 35, 0.45);
+  background: #080a0f;
+  border: 1px dashed rgba(56, 189, 248, 0.35);
   border-radius: var(--radius-md);
   color: var(--primary);
   font-family: var(--font-family);
@@ -765,8 +765,8 @@
 .eqm-inspector-console {
   flex: 1;
   min-height: 0;
-  background: #0b0e15;
-  border: 1px solid rgba(245, 166, 35, 0.35);
+  background: #080b10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   padding: clamp(8px, 1.5vh, 16px) clamp(10px, 1.8vw, 20px);
   display: flex;
@@ -833,8 +833,8 @@
   flex: 1;
   height: clamp(25px, 3.4vh, 28px);
   padding: 0 clamp(6px, 1vw, 10px);
-  background: rgba(245, 166, 35, 0.14);
-  border: 1px solid rgba(245, 166, 35, 0.55);
+  background: rgba(56, 189, 248, 0.10);
+  border: 1px solid rgba(56, 189, 248, 0.45);
   border-radius: var(--radius-md);
   color: var(--primary-hover);
   font-family: var(--font-family);
@@ -847,7 +847,7 @@
 }
 
 .eqm-inspector-solo-btn:hover {
-  background: rgba(245, 166, 35, 0.26);
+  background: rgba(56, 189, 248, 0.22);
   color: #ffffff;
 }
 
@@ -855,7 +855,7 @@
   background: var(--primary);
   border-color: var(--primary);
   color: #080a0f;
-  box-shadow: 0 0 12px rgba(245, 166, 35, 0.35);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
 }
 
 .eqm-inspector-delete-btn {
@@ -928,12 +928,12 @@
 
 .eqm-dial-knob:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 8px rgba(245, 166, 35, 0.28));
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.25));
 }
 
 .eqm-dial-knob.dragging {
   transform: scale(1.07);
-  filter: drop-shadow(0 0 12px rgba(245, 166, 35, 0.5));
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.45));
 }
 
 .eqm-dial-knob:focus-visible {
@@ -1528,7 +1528,7 @@ body.knob-dragging * {
 .eqm-folder-item.active {
   background: var(--primary-muted);
   color: var(--primary);
-  border-color: rgba(245, 166, 35, 0.4);
+  border-color: rgba(56, 189, 248, 0.4);
   font-weight: 600;
 }
 
@@ -1541,7 +1541,7 @@ body.knob-dragging * {
 }
 
 .eqm-folder-item.active .eqm-folder-badge {
-  background: rgba(245, 166, 35, 0.25);
+  background: rgba(56, 189, 248, 0.22);
   color: var(--primary-hover);
 }
 

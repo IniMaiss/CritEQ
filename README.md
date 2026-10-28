@@ -97,16 +97,6 @@ The underlying frequency response measurements originate from:
 
 ---
 
-## 📥 Installation
-
-### Download Pre-built Release
-1. Go to the [**Releases**](https://github.com/IniMaiss/CritEQ/releases) page.
-2. Download the latest `CritEQ-Installer.dmg` (for Apple Silicon macOS 14.2+).
-3. Open the `.dmg` file and drag `CritEQ.app` into your `/Applications` folder.
-4. Launch **CritEQ** and grant System Audio permissions when prompted by macOS.
-
----
-
 ## 🛠️ Building from Source
 
 ### Prerequisites

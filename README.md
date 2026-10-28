@@ -10,6 +10,14 @@
 [![Presets: 5,900+](https://img.shields.io/badge/IEM%20Presets-5%2C900%2B-orange.svg)](./Preset)
 [![Zero Telemetry](https://img.shields.io/badge/Telemetry-Zero%20%2F%20100%25%20Offline-success.svg)](./LEGAL_AND_COMPLIANCE.md)
 
+<br/>
+<br/>
+
+<img src="./docs/screenshots/criteq-app-preview.png" alt="CritEQ Mastering Equalizer Interface" width="920" />
+
+<br/>
+<sub><em>Interactive Parametric EQ Canvas, Real-Time FFT Spectrum Analyzer, A/B Slot Auditioning, and Global EQ Scaling.</em></sub>
+
 </div>
 
 ---

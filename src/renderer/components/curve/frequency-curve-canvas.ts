@@ -67,7 +67,6 @@ export class FrequencyCurveCanvas {
   private readonly ctx: CanvasRenderingContext2D;
   private readonly callbacks: CurveCanvasCallbacks;
   private contextMenuEl: HTMLElement | null = null;
-  private expandBtnEl: HTMLButtonElement | null = null;
   private analyser: SpectrumAnalyzerService | null = null;
 
   private bands: readonly Readonly<ExpertEqualizerPresetBand>[] = [];
@@ -114,23 +113,6 @@ export class FrequencyCurveCanvas {
 
   private createOverlayControls(): void {
     if (typeof document === 'undefined') return;
-
-    // Top-left fullscreen expand icon (matches X5A in eqm-expert-eq-graph)
-    const expandBtn = document.createElement('button');
-    expandBtn.className = 'eqm-graph-fullscreen-btn';
-    expandBtn.title = 'Toggle Fullscreen Mode';
-    expandBtn.setAttribute('aria-label', 'Toggle Fullscreen Mode');
-    expandBtn.innerHTML = EQMAC_ICONS.expand;
-    expandBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (document.fullscreenElement) {
-        document.exitFullscreen?.().catch(() => {});
-      } else {
-        this.container.requestFullscreen?.().catch(() => {});
-      }
-    });
-    this.container.appendChild(expandBtn);
-    this.expandBtnEl = expandBtn;
 
     // Right-click context menu (matches graphContextMenu in eqm-expert-eq-graph)
     const menu = document.createElement('div');
@@ -207,7 +189,6 @@ export class FrequencyCurveCanvas {
     window.removeEventListener('mouseup', this.boundMouseUp);
     window.removeEventListener('click', this.boundCloseMenu);
     this.resizeObserver?.disconnect();
-    this.expandBtnEl?.remove();
     this.contextMenuEl?.remove();
     this.canvas.remove();
   }
@@ -327,25 +308,19 @@ export class FrequencyCurveCanvas {
   private drawGridAndAxes(w: number, h: number): void {
     this.ctx.save();
 
-    // Subtle deep-studio vertical background vignette
-    if (typeof this.ctx.createLinearGradient === 'function') {
-      const bgGrad = this.ctx.createLinearGradient(0, 0, 0, h);
-      bgGrad.addColorStop(0, '#07090E');
-      bgGrad.addColorStop(0.6, '#06080C');
-      bgGrad.addColorStop(1, '#05070A');
-      this.ctx.fillStyle = bgGrad;
-      this.ctx.fillRect(0, 0, w, h);
-    }
+    // Clean crisp paper white canvas background
+    this.ctx.fillStyle = '#FFFFFF';
+    this.ctx.fillRect(0, 0, w, h);
 
     this.ctx.lineWidth = 1;
 
-    // 31 Vertical logarithmic frequency grid lines (delicate hairline studio grid)
+    // 31 Vertical logarithmic frequency grid lines (clean Neobrutalist graph lines)
     for (const freq of GRID_TICKS_HZ) {
       const x = freqToX(freq, w, GRAPH_MIN_FREQ_HZ, GRAPH_MAX_FREQ_HZ);
       const isMajor = freq === 100 || freq === 1000 || freq === 10000;
       this.ctx.strokeStyle = isMajor
-        ? 'rgba(148, 163, 184, 0.08)'
-        : 'rgba(148, 163, 184, 0.028)';
+        ? 'rgba(0, 0, 0, 0.12)'
+        : 'rgba(0, 0, 0, 0.04)';
       this.ctx.beginPath();
       this.ctx.moveTo(x, 0);
       this.ctx.lineTo(x, h);
@@ -353,7 +328,7 @@ export class FrequencyCurveCanvas {
     }
 
     // Horizontal dB grid lines (-20 .. +20 dB)
-    this.ctx.strokeStyle = 'rgba(148, 163, 184, 0.035)';
+    this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
     for (const db of GRID_DBS) {
       const y = dbToY(db, h);
       this.ctx.beginPath();
@@ -362,9 +337,9 @@ export class FrequencyCurveCanvas {
       this.ctx.stroke();
     }
 
-    // Axis text styling (clean tabular studio telemetry)
-    this.ctx.fillStyle = 'rgba(148, 163, 184, 0.45)';
-    this.ctx.font = '500 9px "JetBrains Mono", -apple-system, BlinkMacSystemFont, sans-serif';
+    // Axis text styling (bold tabular monospace telemetry)
+    this.ctx.fillStyle = '#000000';
+    this.ctx.font = '700 9px "JetBrains Mono", -apple-system, BlinkMacSystemFont, sans-serif';
 
     // Bottom frequency labels: [20, 40, 100, 200, 400, 1K, 2K, 4K, 10K, 20K]
     this.ctx.textAlign = 'center';
@@ -383,7 +358,7 @@ export class FrequencyCurveCanvas {
     }
 
     // Left-side Spectrum Volume labels: [20dB, 0dB, -20dB, -40dB, -60dB, -80dB]
-    this.ctx.fillStyle = 'rgba(126, 136, 155, 0.38)';
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
     this.ctx.textAlign = 'left';
     for (let i = 0; i < VOLUME_TICKS.length; i++) {
       const vDb = VOLUME_TICKS[i]!;
@@ -456,12 +431,12 @@ export class FrequencyCurveCanvas {
       for (const seg of preSegments) {
         this.ctx.bezierCurveTo(seg.cp1x, seg.cp1y, seg.cp2x, seg.cp2y, seg.x, seg.y);
       }
-      this.ctx.strokeStyle = 'rgba(148, 163, 184, 0.16)';
-      this.ctx.lineWidth = 1;
+      this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+      this.ctx.lineWidth = 1.2;
       this.ctx.stroke();
     }
 
-    // 2. Post-EQ Ethereal Mist Silhouette Fill (very faint, keeping the canvas plain and calm)
+    // 2. Post-EQ Ethereal Mist Silhouette Fill
     this.ctx.beginPath();
     this.ctx.moveTo(0, h);
     this.ctx.lineTo(xs[0]!, postYs[0]!);
@@ -472,9 +447,9 @@ export class FrequencyCurveCanvas {
     this.ctx.closePath();
 
     const fillGrad = this.ctx.createLinearGradient(0, h * 0.2, 0, h);
-    fillGrad.addColorStop(0, 'rgba(56, 189, 248, 0.035)');
-    fillGrad.addColorStop(0.7, 'rgba(56, 189, 248, 0.01)');
-    fillGrad.addColorStop(1, 'rgba(56, 189, 248, 0.00)');
+    fillGrad.addColorStop(0, 'rgba(103, 232, 249, 0.16)');
+    fillGrad.addColorStop(0.7, 'rgba(103, 232, 249, 0.04)');
+    fillGrad.addColorStop(1, 'rgba(103, 232, 249, 0.00)');
     this.ctx.fillStyle = fillGrad;
     this.ctx.fill();
 
@@ -484,8 +459,8 @@ export class FrequencyCurveCanvas {
     for (const seg of postSegments) {
       this.ctx.bezierCurveTo(seg.cp1x, seg.cp1y, seg.cp2x, seg.cp2y, seg.x, seg.y);
     }
-    this.ctx.strokeStyle = 'rgba(56, 189, 248, 0.40)';
-    this.ctx.lineWidth = 1.25;
+    this.ctx.strokeStyle = 'rgba(2, 132, 199, 0.70)';
+    this.ctx.lineWidth = 1.6;
     this.ctx.stroke();
 
     // 4. Floating Peak-Hold Envelope Hairline Trace
@@ -496,8 +471,8 @@ export class FrequencyCurveCanvas {
       for (const seg of peakSegments) {
         this.ctx.bezierCurveTo(seg.cp1x, seg.cp1y, seg.cp2x, seg.cp2y, seg.x, seg.y);
       }
-      this.ctx.strokeStyle = 'rgba(125, 211, 252, 0.55)';
-      this.ctx.lineWidth = 1.0;
+      this.ctx.strokeStyle = 'rgba(239, 68, 68, 0.70)';
+      this.ctx.lineWidth = 1.4;
       this.ctx.stroke();
     }
 
@@ -527,13 +502,13 @@ export class FrequencyCurveCanvas {
 
       const hexColor =
         this.isBypassed || band.bypass
-          ? '#64748B'
+          ? '#94A3B8'
           : band.color || getColorForFrequency(band.frequency);
 
       const numPoints = points.length;
       this.ctx.save();
 
-      // Subtle translucent active guide fill (whisper light)
+      // Subtle translucent active guide fill
       this.ctx.beginPath();
       this.ctx.moveTo(0, zeroY);
       for (let p = 0; p < numPoints; p++) {
@@ -545,10 +520,10 @@ export class FrequencyCurveCanvas {
       this.ctx.closePath();
 
       this.ctx.fillStyle = hexColor;
-      this.ctx.globalAlpha = 0.08;
+      this.ctx.globalAlpha = 0.14;
       this.ctx.fill();
 
-      // Delicate hairline guide stroke
+      // Bold Neobrutalist active guide stroke
       this.ctx.beginPath();
       for (let p = 0; p < numPoints; p++) {
         const x = (p / (numPoints - 1)) * w;
@@ -557,8 +532,8 @@ export class FrequencyCurveCanvas {
         else this.ctx.lineTo(x, y);
       }
       this.ctx.strokeStyle = hexColor;
-      this.ctx.globalAlpha = 0.75;
-      this.ctx.lineWidth = 1.35;
+      this.ctx.globalAlpha = 0.9;
+      this.ctx.lineWidth = 2.0;
       this.ctx.stroke();
 
       this.ctx.restore();
@@ -571,8 +546,8 @@ export class FrequencyCurveCanvas {
   private drawOverlayZeroLine(w: number, h: number): void {
     const zeroY = dbToY(0, h);
     this.ctx.save();
-    this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.28)';
+    this.ctx.lineWidth = 1.5;
     this.ctx.beginPath();
     this.ctx.moveTo(0, zeroY);
     this.ctx.lineTo(w, zeroY);
@@ -605,7 +580,7 @@ export class FrequencyCurveCanvas {
       const isDehighlighted = this.dehighlightedBuckets.includes(bucket);
       const color =
         bucket === 'all'
-          ? '#F8FAFC'
+          ? '#000000'
           : bucket === 'left'
             ? EQMAC_COLORS.leftChannel
             : EQMAC_COLORS.rightChannel;
@@ -613,7 +588,7 @@ export class FrequencyCurveCanvas {
       const numPoints = points.length;
       this.ctx.save();
 
-      // Soft master area wash under composite curve down to 0 dB line (ultra-clean, modern precision look)
+      // Soft master area wash under composite curve down to 0 dB line (bold Neobrutalist yellow wash)
       if (bucket === 'all' && !this.isBypassed && !isDehighlighted) {
         this.ctx.beginPath();
         this.ctx.moveTo(0, zeroY);
@@ -626,28 +601,17 @@ export class FrequencyCurveCanvas {
         this.ctx.closePath();
 
         const areaGrad = this.ctx.createLinearGradient(0, 0, 0, h);
-        areaGrad.addColorStop(0, 'rgba(56, 189, 248, 0.05)');
-        areaGrad.addColorStop(0.5, 'rgba(56, 189, 248, 0.02)');
-        areaGrad.addColorStop(1, 'rgba(56, 189, 248, 0.00)');
+        areaGrad.addColorStop(0, 'rgba(255, 222, 89, 0.24)');
+        areaGrad.addColorStop(0.6, 'rgba(255, 222, 89, 0.08)');
+        areaGrad.addColorStop(1, 'rgba(255, 222, 89, 0.00)');
         this.ctx.fillStyle = areaGrad;
         this.ctx.fill();
-
-        // Subtle precision cyan underglow behind master curve
-        this.ctx.beginPath();
-        for (let i = 0; i < numPoints; i++) {
-          const x = (i / (numPoints - 1)) * w;
-          const y = dbToY(points[i] ?? 0, h);
-          if (i === 0) this.ctx.moveTo(x, y);
-          else this.ctx.lineTo(x, y);
-        }
-        this.ctx.strokeStyle = 'rgba(56, 189, 248, 0.22)';
-        this.ctx.lineWidth = 3.5;
-        this.ctx.stroke();
       }
 
-      this.ctx.strokeStyle = color;
-      this.ctx.lineWidth = bucket === 'all' ? 1.85 : 1.5;
-      this.ctx.globalAlpha = this.isBypassed ? 0.28 : isDehighlighted ? 0.25 : 0.95;
+      // Master composite curve stroke: Bold ink-black Neobrutalist curve
+      this.ctx.strokeStyle = bucket === 'all' ? '#000000' : color;
+      this.ctx.lineWidth = bucket === 'all' ? 2.6 : 2.0;
+      this.ctx.globalAlpha = this.isBypassed ? 0.28 : isDehighlighted ? 0.25 : 1.0;
 
       this.ctx.beginPath();
       for (let i = 0; i < numPoints; i++) {
@@ -662,7 +626,7 @@ export class FrequencyCurveCanvas {
       if (bucket !== 'all') {
         const label = bucket === 'left' ? 'L' : 'R';
         this.ctx.fillStyle = color;
-        this.ctx.font = '600 10px -apple-system, sans-serif';
+        this.ctx.font = '800 10px -apple-system, sans-serif';
         const yStart = dbToY(points[0] ?? 0, h) - 6;
         const yEnd = dbToY(points[numPoints - 1] ?? 0, h) - 6;
         this.ctx.textAlign = 'left';
@@ -676,8 +640,8 @@ export class FrequencyCurveCanvas {
   }
 
   /**
-   * Draws minimalist precision hollow reticle rings at each band handle (frequency, gain)
-   * and a sleek dark glass HUD tooltip for hovered/selected bands.
+   * Draws Neobrutalist tactile node tokens at each band handle (frequency, gain)
+   * and a high-contrast yellow HUD tooltip for hovered/selected bands.
    */
   private drawBandHandles(w: number, h: number): void {
     const activeHighlightId =
@@ -695,49 +659,52 @@ export class FrequencyCurveCanvas {
       const isHighlighted = band.id === activeHighlightId || isSoloed;
       const color =
         this.isBypassed || band.bypass
-          ? '#64748B'
+          ? '#94A3B8'
           : band.color || getColorForFrequency(band.frequency);
 
       this.ctx.save();
       if (this.soloBandId !== null && !isSoloed) {
-        this.ctx.globalAlpha = 0.25;
+        this.ctx.globalAlpha = 0.3;
       }
 
-      // Vertical precision frequency drop guide for active/selected node
+      // Vertical dashed frequency drop guide for active/selected node
       if (isSelected || isHighlighted) {
         this.ctx.beginPath();
         this.ctx.moveTo(x, y);
         this.ctx.lineTo(x, zeroY);
-        this.ctx.strokeStyle = isSoloed ? 'rgba(56, 189, 248, 0.45)' : 'rgba(255, 255, 255, 0.14)';
-        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = '#000000';
+        this.ctx.lineWidth = 1.5;
+        if (typeof this.ctx.setLineDash === 'function') {
+          this.ctx.setLineDash([3, 3]);
+        }
         this.ctx.stroke();
-
-        // Outer precision halo ring
-        this.ctx.beginPath();
-        this.ctx.arc(x, y, isSoloed ? 11 : 9.5, 0, Math.PI * 2);
-        this.ctx.fillStyle = isSoloed
-          ? 'rgba(56, 189, 248, 0.20)'
-          : 'rgba(56, 189, 248, 0.08)';
-        this.ctx.fill();
-        this.ctx.lineWidth = 1;
-        this.ctx.strokeStyle = isSoloed ? '#38BDF8' : 'rgba(56, 189, 248, 0.45)';
-        this.ctx.stroke();
+        if (typeof this.ctx.setLineDash === 'function') {
+          this.ctx.setLineDash([]);
+        }
       }
 
-      // Precision Hollow Ring (Minimalist Reticle Handle)
-      const ringRadius = isHighlighted || isSelected ? 5.5 : 4.5;
+      // Neobrutalist Tactile Node Handle
+      const ringRadius = isHighlighted || isSelected ? 7.5 : 6;
+
+      // 1. Hard 2px 2px Black Drop-Shadow
+      this.ctx.beginPath();
+      this.ctx.arc(x + 2, y + 2, ringRadius, 0, Math.PI * 2);
+      this.ctx.fillStyle = '#000000';
+      this.ctx.fill();
+
+      // 2. Node Body with bold 2px black border and vibrant pastel fill
       this.ctx.beginPath();
       this.ctx.arc(x, y, ringRadius, 0, Math.PI * 2);
-      this.ctx.fillStyle = '#07090E';
+      this.ctx.fillStyle = isSoloed ? '#67E8F9' : color;
       this.ctx.fill();
-      this.ctx.lineWidth = 1.6;
-      this.ctx.strokeStyle = isSoloed ? '#38BDF8' : color;
+      this.ctx.lineWidth = 2;
+      this.ctx.strokeStyle = '#000000';
       this.ctx.stroke();
 
-      // Precision center micro-dot
+      // 3. Center Solid Black Dot
       this.ctx.beginPath();
-      this.ctx.arc(x, y, isSelected ? 1.5 : 1, 0, Math.PI * 2);
-      this.ctx.fillStyle = isSoloed ? '#38BDF8' : color;
+      this.ctx.arc(x, y, isSelected ? 2.2 : 1.6, 0, Math.PI * 2);
+      this.ctx.fillStyle = '#000000';
       this.ctx.fill();
 
       if (isHighlighted || isSelected) {
@@ -760,46 +727,56 @@ export class FrequencyCurveCanvas {
     const text = `${soloPrefix}${formatEqMacFrequency(band.frequency)}  ${formatEqMacGain(band.gain, band.type)}  Q ${qVal.toFixed(2)}`;
     const infoW = isSoloed ? 196 : 162;
     const soloBtnW = isSelected ? 24 : 0;
-    const gap = isSelected ? 4 : 0;
+    const gap = isSelected ? 6 : 0;
     const totalW = infoW + gap + soloBtnW;
     const tooltipX = Math.max(10, Math.min(w - totalW - 10, x - totalW / 2));
-    const tooltipY = y < 40 ? y + 16 : y - 30;
+    const tooltipY = y < 40 ? y + 18 : y - 34;
+    const infoH = 24;
 
-    // Minimalist Studio Frosted Glass HUD Pill
-    this.ctx.fillStyle = 'rgba(8, 10, 16, 0.90)';
-    this.ctx.strokeStyle = isSoloed
-      ? '#38BDF8'
-      : isSelected
-        ? 'rgba(56, 189, 248, 0.55)'
-        : 'rgba(255, 255, 255, 0.12)';
-    this.ctx.lineWidth = 1;
+    // Neobrutalist Hard Drop Shadow
+    this.ctx.fillStyle = '#000000';
     this.ctx.beginPath();
-    this.ctx.roundRect(tooltipX, tooltipY, infoW, 22, 4);
+    this.ctx.roundRect(tooltipX + 3, tooltipY + 3, infoW, infoH, 4);
+    this.ctx.fill();
+
+    // Main Tooltip Pill
+    this.ctx.fillStyle = isSoloed ? '#67E8F9' : '#FFDE59';
+    this.ctx.strokeStyle = '#000000';
+    this.ctx.lineWidth = 2;
+    this.ctx.beginPath();
+    this.ctx.roundRect(tooltipX, tooltipY, infoW, infoH, 4);
     this.ctx.fill();
     this.ctx.stroke();
 
-    this.ctx.fillStyle = isSoloed ? '#38BDF8' : '#F1F5F9';
-    this.ctx.font = '500 10px "JetBrains Mono", ui-monospace, monospace';
+    this.ctx.fillStyle = '#000000';
+    this.ctx.font = '700 10px "JetBrains Mono", ui-monospace, monospace';
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'middle';
-    this.ctx.fillText(text, tooltipX + infoW / 2, tooltipY + 11);
+    this.ctx.fillText(text, tooltipX + infoW / 2, tooltipY + 12);
 
     if (isSelected) {
       const btnX = tooltipX + infoW + gap;
       const btnY = tooltipY;
-      this.soloButtonRect = { x: btnX, y: btnY, w: soloBtnW, h: 22, bandId: band.id };
+      this.soloButtonRect = { x: btnX, y: btnY, w: soloBtnW, h: infoH, bandId: band.id };
 
-      this.ctx.fillStyle = isSoloed ? '#38BDF8' : 'rgba(8, 10, 16, 0.90)';
-      this.ctx.strokeStyle = '#38BDF8';
-      this.ctx.lineWidth = 1;
+      // Solo button hard shadow
+      this.ctx.fillStyle = '#000000';
       this.ctx.beginPath();
-      this.ctx.roundRect(btnX, btnY, soloBtnW, 22, 4);
+      this.ctx.roundRect(btnX + 2, btnY + 2, soloBtnW, infoH, 4);
+      this.ctx.fill();
+
+      // Solo button body
+      this.ctx.fillStyle = isSoloed ? '#000000' : '#FFFFFF';
+      this.ctx.strokeStyle = '#000000';
+      this.ctx.lineWidth = 2;
+      this.ctx.beginPath();
+      this.ctx.roundRect(btnX, btnY, soloBtnW, infoH, 4);
       this.ctx.fill();
       this.ctx.stroke();
 
-      this.ctx.fillStyle = isSoloed ? '#080A0F' : '#38BDF8';
-      this.ctx.font = '700 10px "JetBrains Mono", ui-monospace, monospace';
-      this.ctx.fillText('S', btnX + soloBtnW / 2, btnY + 11);
+      this.ctx.fillStyle = isSoloed ? '#FFDE59' : '#000000';
+      this.ctx.font = '800 10px "JetBrains Mono", ui-monospace, monospace';
+      this.ctx.fillText('S', btnX + soloBtnW / 2, btnY + 12);
     }
   }
 

@@ -22,14 +22,14 @@ app.whenReady().then(async () => {
     global: -3.5,
     isDefault: false,
     bands: [
-      { id: 'b1', frequency: 28, gain: 4.8, bandwidth: 0.85, type: 'PK', bypass: false, channels: 'all', color: '#EF4444' },
-      { id: 'b2', frequency: 75, gain: 3.2, bandwidth: 1.10, type: 'LS', bypass: false, channels: 'all', color: '#F97316' },
-      { id: 'b3', frequency: 180, gain: -1.8, bandwidth: 1.40, type: 'PK', bypass: false, channels: 'all', color: '#F59E0B' },
-      { id: 'b4', frequency: 520, gain: 0.9, bandwidth: 1.80, type: 'PK', bypass: false, channels: 'all', color: '#10B981' },
-      { id: 'b5', frequency: 1250, gain: -1.2, bandwidth: 1.50, type: 'PK', bypass: false, channels: 'all', color: '#06B6D4' },
-      { id: 'b6', frequency: 2800, gain: 5.6, bandwidth: 1.25, type: 'PK', bypass: false, channels: 'all', color: '#3B82F6' },
-      { id: 'b7', frequency: 5900, gain: -3.4, bandwidth: 2.10, type: 'PK', bypass: false, channels: 'all', color: '#8B5CF6' },
-      { id: 'b8', frequency: 10500, gain: 2.5, bandwidth: 1.00, type: 'HS', bypass: false, channels: 'all', color: '#EC4899' },
+      { id: 'b1', frequency: 28, gain: 5.5, bandwidth: 0.85, type: 0, bypass: false, color: '#FF6B6B' },
+      { id: 'b2', frequency: 75, gain: 3.2, bandwidth: 1.10, type: 9, bypass: false, color: '#FFA07A' },
+      { id: 'b3', frequency: 180, gain: -2.2, bandwidth: 1.40, type: 0, bypass: false, color: '#FFD93D' },
+      { id: 'b4', frequency: 520, gain: 1.2, bandwidth: 1.80, type: 0, bypass: false, color: '#6BCB77' },
+      { id: 'b5', frequency: 1250, gain: -1.6, bandwidth: 1.50, type: 0, bypass: false, color: '#4D96FF' },
+      { id: 'b6', frequency: 2800, gain: 6.2, bandwidth: 1.25, type: 0, bypass: false, color: '#9B51E0' },
+      { id: 'b7', frequency: 5900, gain: -3.8, bandwidth: 2.10, type: 0, bypass: false, color: '#FF7675' },
+      { id: 'b8', frequency: 10500, gain: 3.5, bandwidth: 1.00, type: 10, bypass: false, color: '#FD79A8' },
     ],
   };
 
@@ -57,7 +57,7 @@ app.whenReady().then(async () => {
     width: 1080,
     height: 680,
     show: true,
-    backgroundColor: '#06080C',
+    backgroundColor: '#F4EFEA',
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       preload: path.join(projectRoot, 'dist/preload/preload.js'),

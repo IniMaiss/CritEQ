@@ -30,7 +30,6 @@ export class PresetBar {
   private preampFillBar!: HTMLElement;
   private preampValueDisplay!: HTMLElement;
   private preampEditInput!: HTMLInputElement;
-  private bypassButton!: HTMLButtonElement;
   private spectrumDiffBtn!: HTMLButtonElement;
   private cachedPresetIds: string[] = [];
   private cachedBrand: string = FOLDER_ALL;
@@ -54,7 +53,7 @@ export class PresetBar {
         <div class="app-title">CritEQ</div>
         <select id="preset-brand-selector" class="eqm-select eqm-brand-select" title="Filter Presets by Brand / Folder"></select>
         <select id="preset-selector" class="eqm-select" title="Select Preset"></select>
-        <button id="btn-browse-presets" class="eqm-btn" title="Open Folder / Preset Browser">📁 Folders</button>
+        <button id="btn-browse-presets" class="eqm-btn" title="Open Folder / Preset Browser">Folders</button>
         <input type="text" id="preset-name-input" placeholder="Preset name..." style="display: none; width: 120px;" />
         <button id="btn-save-preset" class="eqm-btn" title="Save Custom Preset">Save</button>
         <button id="btn-reset-preset" class="eqm-btn" title="Reset Current Preset to Default / 0 dB">Reset</button>
@@ -62,7 +61,7 @@ export class PresetBar {
       </div>
 
       <div class="header-center eqm-preamp-bar">
-        <div class="eqm-value-screen eqm-preamp-label">Preamp:</div>
+        <div class="eqm-preamp-label">PREAMP</div>
         <div class="eqm-flat-slider-wrap" title="Drag or double-click to reset Preamp (0 dB)">
           <div class="eqm-flat-slider-track">
             <div class="eqm-flat-slider-center-tick"></div>
@@ -72,7 +71,6 @@ export class PresetBar {
         </div>
         <div id="preamp-val" class="eqm-value-screen eqm-clickable" title="Click to enter exact Preamp dB">+0.0dB</div>
         <input type="number" id="preamp-edit-input" class="eqm-inline-num" min="-24" max="24" step="0.1" style="display: none; width: 64px;" />
-        <button id="btn-global-bypass" class="eqm-btn" title="Toggle Equalizer Bypass">Bypass</button>
       </div>
 
       <div class="header-right">
@@ -91,7 +89,6 @@ export class PresetBar {
     this.preampFillBar = this.container.querySelector('#preamp-fill-bar')!;
     this.preampValueDisplay = this.container.querySelector('#preamp-val')!;
     this.preampEditInput = this.container.querySelector('#preamp-edit-input')!;
-    this.bypassButton = this.container.querySelector('#btn-global-bypass')!;
     this.spectrumDiffBtn = this.container.querySelector('#btn-spectrum-diff')!;
 
     this.attachEventListeners();
@@ -153,10 +150,6 @@ export class PresetBar {
       if (this.isEditingPreamp) {
         this.commitPreampInlineEdit();
       }
-    });
-
-    this.bypassButton.addEventListener('click', () => {
-      this.store.toggleGlobalBypass();
     });
 
     this.spectrumDiffBtn.addEventListener('click', () => {
@@ -236,15 +229,6 @@ export class PresetBar {
       } else {
         this.spectrumDiffBtn.classList.remove('active');
       }
-
-      // Update bypass button styling
-      if (state.isBypassed) {
-        this.bypassButton.classList.add('active-toggle');
-        this.bypassButton.textContent = 'Bypassed';
-      } else {
-        this.bypassButton.classList.remove('active-toggle');
-        this.bypassButton.textContent = 'Bypass';
-      }
     });
   }
 
@@ -258,14 +242,14 @@ export class PresetBar {
     // All Brands option
     const allOpt = document.createElement('option');
     allOpt.value = FOLDER_ALL;
-    allOpt.textContent = `📁 All (${state.presets.length})`;
+    allOpt.textContent = `All (${state.presets.length})`;
     this.brandSelectElement.appendChild(allOpt);
 
     for (const b of sortedBrands) {
       const count = brandMap.get(b)?.length ?? 0;
       const opt = document.createElement('option');
       opt.value = b;
-      opt.textContent = `📁 ${b} (${count})`;
+      opt.textContent = `${b} (${count})`;
       this.brandSelectElement.appendChild(opt);
     }
 
@@ -325,7 +309,7 @@ export class PresetBar {
       <div class="eqm-folder-browser-dialog">
         <div class="eqm-folder-header">
           <div class="eqm-folder-header-title">
-            <span>📁 Preset Browser</span>
+            <span>Preset Browser</span>
             <span class="eqm-folder-badge" id="modal-total-badge">${state.presets.length} Presets</span>
           </div>
           <div class="eqm-folder-search-wrap">
@@ -392,7 +376,7 @@ export class PresetBar {
     // All option
     const allBtn = document.createElement('button');
     allBtn.className = `eqm-folder-item ${this.modalSelectedFolder === FOLDER_ALL ? 'active' : ''}`;
-    allBtn.innerHTML = `<span>📁 All Brands</span><span class="eqm-folder-badge">${state.presets.length}</span>`;
+    allBtn.innerHTML = `<span>All Brands</span><span class="eqm-folder-badge">${state.presets.length}</span>`;
     allBtn.addEventListener('click', () => {
       this.modalSelectedFolder = FOLDER_ALL;
       this.renderModalSidebar();
@@ -404,7 +388,7 @@ export class PresetBar {
       const count = brandMap.get(b)?.length ?? 0;
       const btn = document.createElement('button');
       btn.className = `eqm-folder-item ${this.modalSelectedFolder === b ? 'active' : ''}`;
-      btn.innerHTML = `<span>📁 ${b}</span><span class="eqm-folder-badge">${count}</span>`;
+      btn.innerHTML = `<span>${b}</span><span class="eqm-folder-badge">${count}</span>`;
       btn.addEventListener('click', () => {
         this.modalSelectedFolder = b;
         this.renderModalSidebar();

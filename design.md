@@ -1,28 +1,29 @@
 ---
-version: "2.0"
-name: "Precision Mastering Dark"
-description: "Mastering-grade parametric equalizer interface inspired by FabFilter Pro-Q 3 and Crave EQ."
-dial: "ENERGY 2 / RHYTHM 2 / MOTION 1"
+version: "3.0"
+name: "Classic Light Paper Neobrutalism"
+description: "Tactile, high-contrast parametric equalizer interface inspired by physical studio hardware and classic paper neobrutalism."
+dial: "ENERGY 3 / RHYTHM 2 / MOTION 1"
 colors:
-  background: "#0E1117"
-  canvas: "#090B0F"
-  surface: "#151922"
-  surface-elevated: "#1C222E"
-  accent-primary: "#F5A623"
-  accent-secondary: "#38BDF8"
-  danger: "#F43F5E"
-  text-primary: "#F3F4F6"
-  text-secondary: "#9CA3AF"
-  border-hairline: "rgba(255, 255, 255, 0.08)"
+  background: "#F4EFEA"
+  background-secondary: "#FAF7F2"
+  surface: "#FFFFFF"
+  ink: "#000000"
+  accent-primary: "#FFDE59"
+  accent-solo: "#67E8F9"
+  status-active: "#86EFAC"
+  danger: "#FDA4AF"
+  text-primary: "#000000"
+  text-secondary: "#1F2937"
 ---
 
 ## Design Read & Identity
 
-Reading this as: **Desktop Audio Mastering Parametric Equalizer** for **audio engineers, IEM enthusiasts, and critical listeners**, in a **Precision Mastering Dark** visual language, dial **ENERGY 2 / RHYTHM 2 / MOTION 1**.
+Reading this as: **Desktop Audio Mastering Parametric Equalizer** for **audio engineers, IEM enthusiasts, and critical listeners**, in a **Classic Light Paper Neobrutalism** visual language, dial **ENERGY 3 / RHYTHM 2 / MOTION 1**.
 
 ### Decision Log (R-31)
-- **Why dark obsidian surfaces (`#090B0F` / `#0E1117` / `#151922`)?** A recessed, low-glare acoustic canvas lets translucent multi-band filter curves and real-time FFT spectrum splines read with maximum contrast without eye fatigue during long tuning sessions.
-- **Why warm mastering amber (`#F5A623`) as the primary deliberate accent?** Warm amber/gold provides an unmistakable focal point for the master composite response, active Solo state, and selected node HUD against cool obsidian slate surfaces.
-- **Why 1px hairline borders (`rgba(255, 255, 255, 0.08)`) instead of thick outlines?** Precision audio tools require dense numerical telemetry and uncluttered filter geometry; 1px structural hairlines separate functional zones without competing with the 10 Hz - 24 kHz graph.
-- **Why SF Pro Text / Inter (500-600) + JetBrains Mono (`tabular-nums`)?** UI labels stay calm and scannable while live-updating Hz, dB, and Q values never jitter horizontally when dragging nodes at 60 FPS.
-- **Why an interactive graph primary viewport + modular channel strip console?** The frequency response curve is the primary focal point on screen; the lower band console provides precision fine-tuning for individual filter parameters.
+- **Why warm retro paper background (`#F4EFEA` / `#FAF7F2` / `#FFFFFF`)?** Replaces generic dark software templates with a distinctive tactile physical paper aesthetic that is inviting, high-contrast, and glare-free.
+- **Why bold 2px solid black borders and 2-4px hard unblurred drop-shadows?** Hard geometric shadows without gaussian blur provide clear physical affordance and elevation hierarchy, avoiding the floating jelly feel of generic AI glassmorphism.
+- **Why Neo-Yellow (`#FFDE59`) as the primary deliberate accent?** Yellow functions as a high-visibility highlighter for active band tabs, primary save actions, and the active curve HUD without overwhelming the workspace.
+- **Why tactile mechanical click physics (`translate(1px, 1px)`)?** Gives interactive controls an immediate, satisfying physical snap that confirms user actions.
+- **Why SF Pro Text / Inter (700-800) + JetBrains Mono (`tabular-nums`)?** Bold typography matches the stamped neobrutalist aesthetic while monospace tabular figures prevent telemetry horizontal jitter during live node dragging.
+- **Why an expansive plain canvas (canvas polos) + selected-band inspector console?** Keeps the visual focus entirely on the acoustic EQ curve without rainbow visual clutter, while dedicating the bottom dock for deep parameter manipulation.

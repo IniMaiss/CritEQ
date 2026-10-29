@@ -168,7 +168,7 @@ describe('Option 2: Selected-Band Inspector Dock & Simplified Header', () => {
     expect(bottomContainer.innerHTML).toContain('eqm-inspector-console');
 
     const consoleEl = bottomContainer.querySelector('#eqm-inspector-console')!;
-    expect(consoleEl.innerHTML).toContain('BAND 1 — SELECTED');
+    expect(consoleEl.innerHTML).toContain('BAND 1: SELECTED');
     expect(consoleEl.innerHTML).toContain('FREQUENCY');
     expect(consoleEl.innerHTML).toContain('GAIN');
     expect(consoleEl.innerHTML).toContain('BANDWIDTH');

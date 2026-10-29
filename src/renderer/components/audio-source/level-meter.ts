@@ -1,6 +1,6 @@
 /**
- * Real-time Dual L/R Stereo Peak, RMS, and Phase Correlation Level Meter.
- * Provides precision audiophile monitoring telemetry.
+ * Real-time Dual L/R Stereo Peak and RMS Level Meter.
+ * Provides precision audiophile monitoring telemetry in high-contrast Neobrutalist design.
  */
 
 import { SpectrumAnalyzerService } from '../../audio/spectrum-analyzer-service.js';
@@ -22,8 +22,6 @@ export class LevelMeter {
   private peakFillR!: HTMLElement;
   private rmsFillL!: HTMLElement;
   private rmsFillR!: HTMLElement;
-  private phaseIndicator!: HTMLElement;
-  private phaseVal!: HTMLElement;
   private animId = 0;
   private lastTelemetryPeakL = 0;
   private lastTelemetryPeakR = 0;
@@ -70,36 +68,18 @@ export class LevelMeter {
         <div class="meter-ch-pair">
           <div class="meter-single-ch" title="Left Channel Output Level">
             <span class="ch-tag">L</span>
-            <div class="meter-track-col">
-              <div class="meter-track" title="Peak Level">
-                <div class="meter-fill peak" id="meter-peak-l"></div>
-              </div>
-              <div class="meter-track rms-track" title="RMS Level">
-                <div class="meter-fill rms" id="meter-rms-l"></div>
-              </div>
+            <div class="meter-track" title="Left Channel Peak & RMS Level">
+              <div class="meter-fill peak" id="meter-peak-l"></div>
+              <div class="meter-fill rms" id="meter-rms-l"></div>
             </div>
           </div>
           <div class="meter-single-ch" title="Right Channel Output Level">
             <span class="ch-tag">R</span>
-            <div class="meter-track-col">
-              <div class="meter-track" title="Peak Level">
-                <div class="meter-fill peak" id="meter-peak-r"></div>
-              </div>
-              <div class="meter-track rms-track" title="RMS Level">
-                <div class="meter-fill rms" id="meter-rms-r"></div>
-              </div>
+            <div class="meter-track" title="Right Channel Peak & RMS Level">
+              <div class="meter-fill peak" id="meter-peak-r"></div>
+              <div class="meter-fill rms" id="meter-rms-r"></div>
             </div>
           </div>
-        </div>
-        <div class="phase-meter-cluster" title="Stereo Phase Correlation (-1: Out-of-Phase, 0: Wide Stereo, +1: Mono)">
-          <div class="phase-track-bar">
-            <span class="phase-tag">Ø</span>
-            <div class="phase-slot">
-              <div class="phase-center-notch"></div>
-              <div class="phase-pip" id="phase-pip"></div>
-            </div>
-          </div>
-          <span class="phase-readout" id="phase-readout">+1.0</span>
         </div>
       </div>
     `;
@@ -112,8 +92,6 @@ export class LevelMeter {
       this.container.querySelector('#meter-rms-fill')) as HTMLElement;
     this.rmsFillR = (this.container.querySelector('#meter-rms-r') ??
       this.rmsFillL) as HTMLElement;
-    this.phaseIndicator = this.container.querySelector('#phase-pip') as HTMLElement;
-    this.phaseVal = this.container.querySelector('#phase-readout') as HTMLElement;
   }
 
   private startLoop(): void {
@@ -138,26 +116,13 @@ export class LevelMeter {
 
       if (this.peakFillL?.style) this.peakFillL.style.width = `${pLPct}%`;
       if (this.peakFillR?.style) this.peakFillR.style.width = `${pRPct}%`;
-      if (this.rmsFillL?.style) this.rmsFillL.style.width = `${rLPct}%`;
-      if (this.rmsFillR?.style) this.rmsFillR.style.width = `${rRPct}%`;
-
-      // Stereo correlation & coherence
-      const hasAudio = rL > 0.002 || rR > 0.002;
-      let corr = 1.0;
-      if (hasAudio) {
-        const diff = Math.abs(rL - rR);
-        const sum = rL + rR + 0.0001;
-        const panDelta = diff / sum;
-        corr = Math.max(-0.2, 1.0 - panDelta * 0.95);
+      if (this.rmsFillL?.style) {
+        this.rmsFillL.style.width = `${rLPct}%`;
+        this.rmsFillL.style.borderRightWidth = rLPct > 0 ? '2px' : '0px';
       }
-      const pipPosPct = Math.max(0, Math.min(100, Math.round(((corr + 1) / 2) * 100)));
-      if (this.phaseIndicator?.style) {
-        this.phaseIndicator.style.left = `${pipPosPct}%`;
-      }
-      if (this.phaseVal) {
-        this.phaseVal.textContent = hasAudio
-          ? `${corr >= 0 ? '+' : ''}${corr.toFixed(2)}`
-          : '+1.0';
+      if (this.rmsFillR?.style) {
+        this.rmsFillR.style.width = `${rRPct}%`;
+        this.rmsFillR.style.borderRightWidth = rRPct > 0 ? '2px' : '0px';
       }
 
       // Smooth decay

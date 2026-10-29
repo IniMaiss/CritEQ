@@ -1,5 +1,5 @@
 /**
- * CritEQ Selected-Band Inspector Dock (Option 2 — FabFilter Pro-Q 3 / Crave EQ Style).
+ * CritEQ Selected-Band Inspector Dock (Option 2: Neobrutalism Studio Style).
  * Replaces separate Mixer/Flat and Q/Oct modes with a unified studio console:
  * - Top Strip: Compact band selector pills (1: 60Hz, 2: 250Hz, ...) + "+ Add Band" pill
  * - Left Console: Band identity, Enable toggle, Color swatch, Filter Type & Channel routing,
@@ -361,7 +361,7 @@ export class BandTable {
         <div class="eqm-inspector-header">
           <input type="checkbox" class="eqm-chk-enable" id="inspector-chk-enable" ${!band.bypass ? 'checked' : ''} title="Enable / Bypass Band" />
           <input type="color" class="eqm-color-swatch" id="inspector-color-swatch" value="${rawColor}" title="Band Color" />
-          <span class="eqm-inspector-title" id="inspector-band-title" style="color: ${color}">BAND ${activeIndex} — SELECTED</span>
+          <span class="eqm-inspector-title" id="inspector-band-title">BAND ${activeIndex}: SELECTED</span>
         </div>
 
         <div class="eqm-inspector-selects">
@@ -407,7 +407,7 @@ export class BandTable {
             ${this.renderDialSvg(gainNorm, color, true)}
           </div>
           <div class="eqm-dial-readout eqm-gain-screen ${isBandStop ? 'disabled' : ''}" id="inspector-readout-gain" title="Click to enter exact Gain (dB)">
-            ${isBandStop ? '—' : formatEqMacGain(band.gain)}
+            ${isBandStop ? '-' : formatEqMacGain(band.gain)}
           </div>
           <input type="number" class="eqm-inline-num eqm-dial-inline-input" id="inspector-input-gain" min="-24" max="24" step="0.1" style="display: none;" />
         </div>
@@ -470,8 +470,7 @@ export class BandTable {
 
     const titleEl = this.consoleEl.querySelector('#inspector-band-title') as HTMLElement | null;
     if (titleEl) {
-      titleEl.textContent = `BAND ${activeIndex} — SELECTED`;
-      titleEl.style.color = color;
+      titleEl.textContent = `BAND ${activeIndex}: SELECTED`;
     }
 
     const typeSelect = this.consoleEl.querySelector('#inspector-type-select') as HTMLSelectElement | null;
@@ -511,7 +510,7 @@ export class BandTable {
     const gainReadout = this.consoleEl.querySelector('#inspector-readout-gain') as HTMLElement | null;
     if (gainReadout) {
       gainReadout.classList.toggle('disabled', isBandStop);
-      gainReadout.textContent = isBandStop ? '—' : formatEqMacGain(band.gain);
+      gainReadout.textContent = isBandStop ? '-' : formatEqMacGain(band.gain);
     }
 
     const bwDial = this.consoleEl.querySelector('#inspector-dial-bw') as HTMLElement | null;
@@ -578,15 +577,15 @@ export class BandTable {
       const arcLen = Math.abs(deltaNorm) * totalArcLen;
       const rotDeg = deltaNorm >= 0 ? -90 : -90 - Math.abs(deltaNorm) * 270;
       activeArcMarkup = `
-        <line x1="28" y1="3.5" x2="28" y2="6.5" stroke="rgba(255,255,255,0.35)" stroke-width="1.3" stroke-linecap="round" />
-        <circle cx="28" cy="28" r="${radius}" fill="none" stroke="${color}" stroke-width="2.4"
+        <line x1="28" y1="3.5" x2="28" y2="6.5" stroke="#000000" stroke-width="2" stroke-linecap="round" />
+        <circle cx="28" cy="28" r="${radius}" fill="none" stroke="${color}" stroke-width="3.5"
           stroke-dasharray="${arcLen.toFixed(2)} ${fullCircumference.toFixed(2)}"
           transform="rotate(${rotDeg.toFixed(2)}, 28, 28)" stroke-linecap="round" />
       `;
     } else {
       const arcLen = clamped * totalArcLen;
       activeArcMarkup = `
-        <circle cx="28" cy="28" r="${radius}" fill="none" stroke="${color}" stroke-width="2.4"
+        <circle cx="28" cy="28" r="${radius}" fill="none" stroke="${color}" stroke-width="3.5"
           stroke-dasharray="${arcLen.toFixed(2)} ${fullCircumference.toFixed(2)}"
           transform="rotate(135, 28, 28)" stroke-linecap="round" />
       `;
@@ -594,13 +593,13 @@ export class BandTable {
 
     return `
       <svg class="eqm-dial-svg" viewBox="0 0 56 56" width="100%" height="100%">
-        <circle cx="28" cy="28" r="${radius}" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2.2"
+        <circle cx="28" cy="28" r="${radius}" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="3"
           stroke-dasharray="${totalArcLen.toFixed(2)} ${fullCircumference.toFixed(2)}"
           transform="rotate(135, 28, 28)" stroke-linecap="round" />
         ${activeArcMarkup}
-        <circle cx="28" cy="28" r="16.5" fill="#0B0E15" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+        <circle cx="28" cy="28" r="16" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
         <g transform="rotate(${angleDeg.toFixed(2)}, 28, 28)">
-          <line x1="28" y1="24" x2="28" y2="13" stroke="${color}" stroke-width="2.2" stroke-linecap="round" />
+          <line x1="28" y1="24" x2="28" y2="13" stroke="#000000" stroke-width="3" stroke-linecap="round" />
         </g>
       </svg>
     `;

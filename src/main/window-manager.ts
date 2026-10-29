@@ -47,7 +47,7 @@ export class WindowManager {
       minWidth: 720,
       minHeight: 540,
       title: 'CritEQ',
-      backgroundColor: '#121316',
+      backgroundColor: '#F4EFEA',
       titleBarStyle: isMac ? 'hiddenInset' : 'default',
       webPreferences: {
         preload: this.preloadPath,

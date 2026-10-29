@@ -1,66 +1,67 @@
 /**
- * CritEQ — Precision Mastering Dark Design System.
- * Guided by design.md (Option 1: FabFilter Pro-Q 3 / Crave EQ style):
- * - Deep obsidian acoustic analyzer surfaces (#080A0F, #0E1117, #151922)
- * - Hairline 1px structural borders (rgba(255, 255, 255, 0.08))
- * - Warm Mastering Amber primary accent (#F5A623) & Precision Cyan secondary (#38BDF8)
- * - Clean system UI typography + tabular monospace telemetry
+ * CritEQ — Classic Light Paper Neobrutalism Design System.
+ * Inspired by ekmas/neobrutalism-components:
+ * - Warm retro cream paper background (#F4EFEA, #FAF7F2, #FFFFFF)
+ * - Chunky 2px solid black borders (#000000)
+ * - Hard unblurred geometric drop-shadows (3px 3px 0px #000, 4px 4px 0px #000)
+ * - Tactile mechanical click physics (translate on active)
+ * - Bold high-contrast neo-pastel accents (#FFDE59, #67E8F9, #86EFAC, #FDA4AF, #C4B5FD)
  */
 
 :root {
-  /* Core Palette — Minimalist Precision Studio (Clean Obsidian + Precision Cyan) */
-  --primary: #38bdf8;
-  --primary-hover: #7dd3fc;
-  --primary-muted: rgba(56, 189, 248, 0.12);
-  --secondary: #f43f5e;
+  /* Core Palette — Neobrutalism Signatures */
+  --primary: #ffde59;
+  --primary-hover: #facc15;
+  --primary-muted: rgba(255, 222, 89, 0.35);
+  --secondary: #fda4af;
   --secondary-hover: #fb7185;
-  --tertiary: #a855f7;
-  --neutral: #07090e;
+  --tertiary: #67e8f9;
+  --neutral: #000000;
 
-  /* Studio Surfaces */
-  --dark: #07090e;
-  --background: #090c13;
-  --background-darker: #0d111a;
-  --background-darkest: #06080c;
-  --background-lighter: #161b26;
-  --background-elevated: #1e2433;
-  --foreground: #f8fafc;
+  /* Paper Surfaces */
+  --dark: #000000;
+  --background: #f4efea;
+  --background-darker: #faf7f2;
+  --background-darkest: #ffffff;
+  --background-lighter: #ffffff;
+  --background-elevated: #ffffff;
+  --foreground: #000000;
 
   /* Semantic Accents */
-  --accent: #38bdf8;
-  --brand: #38bdf8;
-  --success: #10b981;
-  --warning: #f43f5e;
+  --accent: #ffde59;
+  --brand: #ffde59;
+  --success: #86efac;
+  --warning: #fda4af;
 
   /* Shared Component Tokens */
-  --bg-app: #090c13;
-  --bg-surface: #0d111a;
-  --bg-surface-elevated: #161b26;
-  --bg-surface-hover: #1e2433;
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --border-accent: rgba(56, 189, 248, 0.45);
+  --bg-app: #f4efea;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-surface-hover: #fffdf5;
+  --border-subtle: #000000;
+  --border-strong: #000000;
+  --border-accent: #000000;
 
-  --accent-cyan: #38bdf8;
+  --accent-cyan: #67e8f9;
   --accent-blue: #38bdf8;
-  --accent-green: #10b981;
-  --accent-orange: #fb923c;
-  --accent-purple: #c084fc;
-  --accent-red: #f43f5e;
+  --accent-green: #86efac;
+  --accent-orange: #fdba74;
+  --accent-purple: #c4b5fd;
+  --accent-red: #fda4af;
 
-  /* High-Contrast Studio Text (WCAG AA >= 4.5:1) */
-  --text-primary: #f3f4f6;
-  --text-secondary: #a8b1c2;
-  --text-muted: #7e889b;
+  /* High-Contrast Bold Text */
+  --text-primary: #000000;
+  --text-secondary: #1f2937;
+  --text-muted: #4b5563;
 
-  /* Precision Hairline Geometry & Subtle Studio Depth */
-  --border-width: 1px;
-  --border-thick: 1px;
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --shadow-btn-hover: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  --shadow-sm: inset 0 1px 2px rgba(0, 0, 0, 0.45);
-  --shadow-active: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  /* Neobrutalism 2px Geometry & Hard Drop Shadows */
+  --border-width: 2px;
+  --border-thick: 2px;
+  --shadow-card: 4px 4px 0px 0px #000000;
+  --shadow-btn: 3px 3px 0px 0px #000000;
+  --shadow-btn-hover: 4px 4px 0px 0px #000000;
+  --shadow-sm: 2px 2px 0px 0px #000000;
+  --shadow-active: 1px 1px 0px 0px #000000;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -89,20 +90,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Precision Studio Buttons */
+/* Neobrutalist Tactile Buttons */
 button {
   background: var(--background-lighter);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-  padding: 5px 11px;
+  border: 2px solid #000000;
+  color: #000000;
+  padding: 5px 12px;
   border-radius: var(--radius-md);
   font-family: var(--font-family);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.2px;
   cursor: pointer;
   box-shadow: var(--shadow-btn);
-  transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -110,115 +111,117 @@ button {
 }
 
 button:hover {
-  background: var(--bg-surface-hover);
-  border-color: var(--border-strong);
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-btn-hover);
 }
 
 button:active {
-  background: var(--background-darker);
+  transform: translate(2px, 2px);
   box-shadow: var(--shadow-active);
 }
 
 button.primary {
   background: var(--primary);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #080a0f;
-  font-weight: 600;
+  border-color: #000000;
+  color: #000000;
+  font-weight: 800;
 }
 
 button.primary:hover {
   background: var(--primary-hover);
-  color: #080a0f;
+  color: #000000;
 }
 
 button.danger {
-  background: rgba(244, 63, 94, 0.14);
-  border-color: rgba(244, 63, 94, 0.35);
-  color: #fda4af;
-  font-weight: 500;
+  background: var(--secondary);
+  border-color: #000000;
+  color: #000000;
+  font-weight: 700;
 }
 
 button.danger:hover {
-  background: var(--secondary);
-  border-color: var(--secondary);
-  color: #080a0f;
+  background: #fb7185;
+  color: #000000;
 }
 
 button.active-toggle {
-  background: rgba(244, 63, 94, 0.2);
-  border-color: var(--secondary);
-  color: #fda4af;
-  font-weight: 600;
+  background: #fdba74;
+  border-color: #000000;
+  color: #000000;
+  font-weight: 800;
 }
 
-/* Keyboard Accessible Focus Rings (WCAG AA & R-32) */
+/* Keyboard Accessible Focus Rings */
 button:focus-visible,
 select:focus-visible,
 input:focus-visible,
 [tabindex='0']:focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 3px solid #000000;
   outline-offset: 2px;
 }
 
-/* Studio Inputs & Selects */
+/* Neobrutalist Inputs & Selects */
 select,
 input[type='text'],
 input[type='number'] {
-  background: var(--background-darkest);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
   padding: 4px 8px;
   border-radius: var(--radius-md);
   font-family: var(--font-family);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
   outline: none;
   box-shadow: var(--shadow-sm);
-  transition: border-color 0.14s ease, background 0.14s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 select:hover,
 input[type='text']:hover,
 input[type='number']:hover {
-  border-color: var(--border-strong);
+  border-color: #000000;
 }
 
 select:focus,
 input:focus {
-  border-color: var(--primary);
+  border-color: #000000;
+  box-shadow: 3px 3px 0px 0px #000000;
 }
 
-/* Precision Toggle Checkbox */
+/* Neobrutalist Checkbox */
 input[type='checkbox'] {
   appearance: none;
-  width: 14px;
-  height: 14px;
-  background: var(--background-darkest);
-  border: 1px solid var(--border-strong);
-  border-radius: 3px;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 4px;
   cursor: pointer;
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.12s ease, border-color 0.12s ease;
+  box-shadow: 2px 2px 0px 0px #000000;
+  transition: transform 0.1s ease;
 }
 
 input[type='checkbox']:hover {
-  border-color: var(--primary);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px 0px #000000;
 }
 
 input[type='checkbox']:checked {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: #ffde59;
 }
 
 input[type='checkbox']:checked::after {
   content: '';
-  width: 6px;
-  height: 6px;
-  background: #080a0f;
+  width: 7px;
+  height: 7px;
+  background: #000000;
   border-radius: 1px;
 }
 
@@ -226,14 +229,15 @@ input[type='checkbox']:checked::after {
 .eqm-color-swatch {
   appearance: none;
   -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
-  border: 1px solid var(--border-strong);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000000;
   border-radius: 50%;
   padding: 0;
   background: transparent;
   cursor: pointer;
   overflow: hidden;
+  box-shadow: 1px 1px 0px 0px #000000;
 }
 
 .eqm-color-swatch::-webkit-color-swatch-wrapper {
@@ -245,50 +249,52 @@ input[type='checkbox']:checked::after {
   border-radius: 50%;
 }
 
-/* Recessed Digital Readout Screen */
+/* Digital Readout Screen */
 .eqm-value-screen {
-  background: rgba(8, 10, 15, 0.75);
-  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  border: 2px solid #000000;
   border-radius: var(--radius-sm);
-  color: var(--text-primary);
+  box-shadow: 2px 2px 0px 0px #000000;
+  color: #000000;
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   padding: 3px 6px;
-  min-height: 22px;
+  min-height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  transition: border-color 0.12s ease, background 0.12s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .eqm-value-screen:hover {
-  border-color: var(--border-strong);
-  background: rgba(14, 17, 24, 0.95);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px 0px #000000;
 }
 
 .eqm-value-screen.disabled {
-  opacity: 0.35;
+  opacity: 0.4;
   pointer-events: none;
 }
 
-/* Subtle Custom Scrollbars for Band Console */
+/* Retro Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #f4efea;
+  border-left: 1px solid #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 3px;
+  background: #000000;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.26);
+  background: #374151;
 }

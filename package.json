@@ -16,7 +16,7 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "icon": "mkdir -p build && swift scripts/generate-icon.swift && iconutil -c icns build/AppIcon.iconset -o build/icon.icns",
-    "package": "rm -rf release CritEQ.app && npm run build && npm run icon && electron-packager . CritEQ --platform=darwin --arch=arm64 --out=release --overwrite --asar --ignore=\"^/(release|CritEQ\\.app|src|tests|coverage|Preset|build|scripts|tasks|anti-slop|Windows porting|\\.git|tsconfig\\.json|vite\\.config\\.ts|vitest\\.config\\.ts|design\\.md)\" --icon=build/icon --app-bundle-id=com.criteq.app --app-category-type=public.app-category.music --extra-resource=dist/main/native-audio-engine && codesign --force --deep --sign - release/CritEQ-darwin-arm64/CritEQ.app && mv release/CritEQ-darwin-arm64/CritEQ.app ./CritEQ.app && rm -rf release"
+    "package": "rm -rf release CritEQ.app && npm run build && npm run icon && electron-packager . CritEQ --platform=darwin --arch=arm64 --out=release --overwrite --asar --ignore=\"^/(release|CritEQ\\.app|src|tests|coverage|Preset|build|scripts|tasks|anti-slop|Windows porting|\\.git|tsconfig\\.json|vite\\.config\\.ts|vitest\\.config\\.ts|design\\.md)\" --icon=build/icon.icns --app-bundle-id=com.criteq.app --app-category-type=public.app-category.music --extra-resource=dist/main/native-audio-engine && codesign --force --deep --sign - release/CritEQ-darwin-arm64/CritEQ.app && mv release/CritEQ-darwin-arm64/CritEQ.app ./CritEQ.app && rm -rf release"
   },
   "keywords": [
     "criteq",

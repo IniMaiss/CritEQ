@@ -27,7 +27,7 @@ func createCritEQIcon(size: CGFloat) -> NSImage {
     ctx.setFillColor(CGColor(red: 0, green: 0, blue: 0, alpha: 1.0))
     ctx.fillPath()
 
-    // 2. Draw base card in vibrant yellow (#FFEB3B)
+    // 2. Draw base card in Paper Cream Retro (#FAF7F2)
     let cardRect = CGRect(
         x: rectMargin,
         y: rectMargin,
@@ -36,7 +36,7 @@ func createCritEQIcon(size: CGFloat) -> NSImage {
     )
     let cardPath = CGPath(roundedRect: cardRect, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
     ctx.addPath(cardPath)
-    ctx.setFillColor(CGColor(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1.0))
+    ctx.setFillColor(CGColor(red: 250.0/255.0, green: 247.0/255.0, blue: 242.0/255.0, alpha: 1.0))
     ctx.fillPath()
 
     // 3. Card solid black border
@@ -49,11 +49,11 @@ func createCritEQIcon(size: CGFloat) -> NSImage {
     let faderXPositions = [280.0, 400.0, 520.0, 640.0, 760.0].map { $0 * scale }
     let thumbYFractions = [0.42, 0.65, 0.82, 0.58, 0.72]
     let faderColors = [
-        CGColor(red: 255.0/255.0, green: 82.0/255.0, blue: 82.0/255.0, alpha: 1.0),   // Coral Red
-        CGColor(red: 33.0/255.0, green: 150.0/255.0, blue: 243.0/255.0, alpha: 1.0),  // Cobalt Blue
-        CGColor(red: 0.0/255.0, green: 230.0/255.0, blue: 118.0/255.0, alpha: 1.0),   // Emerald Green
-        CGColor(red: 33.0/255.0, green: 150.0/255.0, blue: 243.0/255.0, alpha: 1.0),  // Cobalt Blue
-        CGColor(red: 255.0/255.0, green: 82.0/255.0, blue: 82.0/255.0, alpha: 1.0)   // Coral Red
+        CGColor(red: 253.0/255.0, green: 164.0/255.0, blue: 175.0/255.0, alpha: 1.0),  // Neo-Pink (#FDA4AF)
+        CGColor(red: 103.0/255.0, green: 232.0/255.0, blue: 249.0/255.0, alpha: 1.0),  // Neo-Cyan (#67E8F9)
+        CGColor(red: 134.0/255.0, green: 239.0/255.0, blue: 172.0/255.0, alpha: 1.0),  // Neo-Mint (#86EFAC)
+        CGColor(red: 255.0/255.0, green: 222.0/255.0, blue: 89.0/255.0, alpha: 1.0),   // Neo-Yellow (#FFDE59)
+        CGColor(red: 196.0/255.0, green: 181.0/255.0, blue: 253.0/255.0, alpha: 1.0)   // Neo-Purple (#C4B5FD)
     ]
 
     let trackYStart = 320.0 * scale

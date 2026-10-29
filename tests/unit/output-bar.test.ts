@@ -98,7 +98,7 @@ describe('OutputBar Component', () => {
     outputBar.destroy();
   });
 
-  it('renders audiophile IEM suite controls (A/B slots, EQ scale, phase meter) without redundant volume or target curve', () => {
+  it('renders audiophile IEM suite controls (A/B slots, EQ scale, level meter) without redundant volume or target curve', () => {
     const outputBar = new OutputBar(mockContainer as unknown as HTMLElement, store);
     expect(mockContainer.innerHTML).not.toContain('target-curve-select');
     expect(mockContainer.innerHTML).not.toContain('master-vol-slider');
@@ -121,13 +121,17 @@ describe('OutputBar Component', () => {
     outputBar.destroy();
   });
 
-  it('renders LevelMeter with dual L/R peak/RMS bars and stereo phase correlation cluster', () => {
+  it('renders LevelMeter with prominent dual L/R peak and RMS bars', () => {
     const meterEl = createMockElement();
     const meter = new LevelMeter(meterEl as unknown as HTMLElement);
     expect(meterEl.className).toBe('level-meter-container');
     expect(meterEl.innerHTML).toContain('audiophile-meter-unit');
-    expect(meterEl.innerHTML).toContain('phase-meter-cluster');
-    expect(meterEl.innerHTML).toContain('phase-pip');
+    expect(meterEl.innerHTML).toContain('meter-ch-pair');
+    expect(meterEl.innerHTML).toContain('meter-peak-l');
+    expect(meterEl.innerHTML).toContain('meter-peak-r');
+    expect(meterEl.innerHTML).toContain('meter-rms-l');
+    expect(meterEl.innerHTML).toContain('meter-rms-r');
+    expect(meterEl.innerHTML).not.toContain('phase-meter-cluster');
     expect(() => {
       meter.setTelemetryLevels(0.9, 0.85, 0.4, 0.35);
     }).not.toThrow();

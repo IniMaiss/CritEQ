@@ -132,24 +132,6 @@ open /Applications/CritEQ.app
 
 ---
 
-### 💻 Manual Build & Development
-If you prefer running or testing CritEQ directly in development mode:
-
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Build native CoreAudio engine and TypeScript frontend
-npm run build
-
-# 3. Run in development mode
-npm start
-
-# (Optional) Package standalone app or DMG installer manually
-npm run package
-hdiutil create -volname "CritEQ Installer" -srcfolder CritEQ.app -ov -format UDZO CritEQ-Installer.dmg
-```
-
 ### 🔐 macOS System Audio Permission Disclosure
 When you first launch CritEQ, macOS will prompt you to grant **"System Audio Recording" / "Microphone"** access:
 - **Why this prompt appears:** Apple requires explicit user consent for applications using the user-space `AudioHardwareCreateProcessTap` API to read and equalize system audio without installing virtual drivers or kernel extensions.

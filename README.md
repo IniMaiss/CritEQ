@@ -109,41 +109,44 @@ The underlying frequency response measurements originate from:
 
 ---
 
-## 🛠️ Building from Source
+## 🛠️ Installation & Quick Start
 
 ### Prerequisites
 - macOS Sonoma 14.2 or later *(Windows support in active development)*
 - [Node.js](https://nodejs.org) (v18 or later)
 - Xcode Command Line Tools (`xcode-select --install`) with `swiftc`
 
-### Setup & Run
+### ⚡ One-Click Automated Install (Recommended)
+Clone the repository and run the automated installer script—it compiles the native audio engine and installs **CritEQ.app** directly into your `/Applications` folder:
+
 ```bash
-# 1. Clone the repository
 git clone https://github.com/IniMaiss/CritEQ.git
 cd CritEQ
-
-# 2. Install dependencies
-npm install
-
-# 3. Build native CoreAudio engine and TypeScript frontend
-npm run build
-
-# 4. Run in development mode
-npm start
+./install.sh
 ```
 
-### Packaging & Running macOS App (.app / .dmg)
+Once installed, you can launch **CritEQ** immediately from Launchpad, Spotlight (`Cmd + Space` → `CritEQ`), or via terminal:
 ```bash
-# Package as a standalone macOS application
+open /Applications/CritEQ.app
+```
+
+---
+
+### 💻 Manual Build & Development
+If you prefer running or testing CritEQ directly in development mode:
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Build native CoreAudio engine and TypeScript frontend
+npm run build
+
+# 3. Run in development mode
+npm start
+
+# (Optional) Package standalone app or DMG installer manually
 npm run package
-
-# Run the packaged application directly
-open CritEQ.app
-
-# Or install it to your Applications folder
-mv CritEQ.app /Applications/
-
-# (Optional) Create a distributable .dmg installer
 hdiutil create -volname "CritEQ Installer" -srcfolder CritEQ.app -ov -format UDZO CritEQ-Installer.dmg
 ```
 

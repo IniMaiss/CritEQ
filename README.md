@@ -25,6 +25,16 @@
 
 ---
 
+> [!IMPORTANT]
+> ### 🔒 100% Privacy & Anti-Spying Guarantee
+> **CritEQ is built strictly for audio quality and local mastering. It is NOT spyware and does NOT record or monitor your activity.**
+> - **Zero Spying & Zero Wiretapping:** The macOS *CoreAudio Process Tap* is used **exclusively** to route audio through the parametric equalizer filters in volatile RAM in real time, then immediately outputs to your headphones or speakers.
+> - **Zero Audio Recording:** Audio frames are processed purely in ephemeral RAM and **are never recorded, cached, or written to disk**.
+> - **100% Offline with Zero Telemetry:** CritEQ contains zero network request code (`fetch`, `http`, sockets), zero analytics SDKs, and zero telemetry endpoints. **Absolutely no audio, user data, or telemetry is ever transmitted to the repository owner, maintainers, or any third party.**
+> - **Verifiable Open-Source:** Every line of code is open source and auditable. You can inspect [`src/native/native-audio-engine.swift`](./src/native/native-audio-engine.swift) and the frontend codebase to verify that no network or recording backdoors exist.
+
+---
+
 > [!NOTE]
 > ### 🛡️ Independent Clean-Room Implementation
 > **CritEQ is an independent, 100% clean-room open-source project written from scratch.**
@@ -122,14 +132,25 @@ npm run build
 npm start
 ```
 
-### Packaging macOS App (.app / .dmg)
+### Packaging & Running macOS App (.app / .dmg)
 ```bash
 # Package as a standalone macOS application
 npm run package
 
-# Create a distributable .dmg installer
+# Run the packaged application directly
+open CritEQ.app
+
+# Or install it to your Applications folder
+mv CritEQ.app /Applications/
+
+# (Optional) Create a distributable .dmg installer
 hdiutil create -volname "CritEQ Installer" -srcfolder CritEQ.app -ov -format UDZO CritEQ-Installer.dmg
 ```
+
+### 🔐 macOS System Audio Permission Disclosure
+When you first launch CritEQ, macOS will prompt you to grant **"System Audio Recording" / "Microphone"** access:
+- **Why this prompt appears:** Apple requires explicit user consent for applications using the user-space `AudioHardwareCreateProcessTap` API to read and equalize system audio without installing virtual drivers or kernel extensions.
+- **Privacy & Anti-Spying Guarantee:** CritEQ **does not record**, save, or transmit your audio or conversations. All audio frames are processed entirely in local RAM and discarded immediately upon playback. Zero data leaves your machine.
 
 ---
 

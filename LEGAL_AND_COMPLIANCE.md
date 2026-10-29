@@ -34,6 +34,7 @@ CritEQ operates strictly as an offline, local desktop application:
 - **No Telemetry or Analytics:** CritEQ contains no analytics SDKs, crash reporters, tracking pixels, or telemetry endpoints.
 - **No Network Transmission:** CritEQ makes zero outbound network requests (`fetch`, `XMLHttpRequest`, WebSockets, or native sockets).
 - **No User Accounts or PII:** CritEQ does not collect, store, or process any Personally Identifiable Information (PII).
+- **No Developer / Maintainer Surveillance:** The repository owner and project contributors have zero technical ability, zero infrastructure, and zero intent to intercept, collect, or monitor audio or activity on user devices.
 
 ### 2.2 macOS System Audio Capture (`CoreAudio` Process Tap) Disclosure
 To equalize system-wide audio without requiring third-party kernel extensions (`.kext`) or virtual audio drivers, CritEQ utilizes Apple's official user-space **CoreAudio Process Tap API** (`CATapDescription` and `AudioHardwareCreateProcessTap`, introduced in macOS 14.2+) alongside Electron's media capture bridge (`MacSysAudioCapture`).
@@ -42,6 +43,7 @@ To equalize system-wide audio without requiring third-party kernel extensions (`
 1. **Ephemeral In-Memory Processing Only:** Audio frames captured from the macOS system mix are processed in real-time within volatile RAM using `Float32` ring buffers (4096-frame loop buffer) and Direct Form II Transposed biquad filters.
 2. **Zero Recording or Disk Persistence:** At no point is captured system audio written to disk, cached, encoded, or transmitted outside the local audio callback thread.
 3. **Real-Time Spectrum Analysis:** When the spectrum analyzer (`RTA`) is enabled, decimated Fast Fourier Transform (`vDSP` / FFT) magnitude bins are computed in memory solely to render the visual frequency graph in the user interface and are immediately discarded on the next animation frame.
+4. **Anti-Spying & Non-Interception Commitment:** The system audio tap exists solely to perform mathematical EQ calculations (gain boost/cut). Neither the audio payload nor metadata is ever analyzed for content, speech-to-text, fingerprinting, or transmitted to external servers.
 
 ### 2.3 Local File System Access
 CritEQ accesses the local file system exclusively in two contexts:
@@ -54,7 +56,7 @@ CritEQ accesses the local file system exclusively in two contexts:
 
 ### 3.1 Independent Clean-Room Implementation
 CritEQ is an original, clean-room software implementation written in TypeScript and Swift:
-- **Brand & Visual Identity:** CritEQ features an original studio-grade dark inspector UI (`Selected-Band Inspector Dock`, dual `Q | Oct` bandwidth readout, and custom vector rotary controls) and bears no affiliation with Bitgapp Ltd (`eqMac`), Jonas Thedering (`Equalizer APO`), or Apple Inc.
+- **Brand & Visual Identity:** CritEQ features an original Classic Light Paper Neobrutalism UI (`Selected-Band Inspector Dock`, dual `Q | Oct` bandwidth readout, and custom tactile controls) and bears no affiliation with Bitgapp Ltd (`eqMac`), Jonas Thedering (`Equalizer APO`), or Apple Inc.
 - **DSP Mathematics:** All biquad filter coefficients (`PK`, `LP`, `HP`, `LS`, `HS`, `BP`, `NO`, `AP`) are derived directly from first-principles public-domain bilinear transform equations published in **Robert Bristow-Johnson's *Audio EQ Cookbook***.
 
 ### 3.2 Preset Format Interoperability (`Equalizer APO` Compatibility)

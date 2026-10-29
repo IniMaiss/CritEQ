@@ -39,7 +39,7 @@ export class OutputBar {
     this.container.className = 'output-bar';
     this.container.innerHTML = `
       <div class="output-target-group">
-        <div class="output-status-badge" title="CoreAudio automatically follows macOS system output">
+        <div class="output-status-badge" title="CoreAudio Process Tap active — 100% Offline, In-Memory DSP only. No audio is ever recorded, stored, or transmitted.">
           <span class="status-dot-active"></span>
           <span id="output-status-text" class="status-text">System Output EQ Active</span>
         </div>

@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./docs/screenshots/criteq-app-icon.png" alt="CritEQ Logo" width="128" />
+
 # 🎚️ CritEQ
 
 **Mastering-Grade System-Wide Parametric Equalizer for macOS**  
@@ -17,7 +19,7 @@
 <img src="./docs/screenshots/criteq-app-preview.png" alt="CritEQ Mastering Equalizer Interface" width="920" />
 
 <br/>
-<sub><em>Interactive Parametric EQ Canvas, Real-Time FFT Spectrum Analyzer, A/B Slot Auditioning, and Global EQ Scaling.</em></sub>
+<sub><em>Classic Light Paper Neobrutalism UI: Interactive Parametric EQ Canvas, Real-Time FFT Spectrum Analyzer, A/B Slot Auditioning, and Precision L/R Output Meters.</em></sub>
 
 </div>
 
@@ -34,7 +36,7 @@
 
 ## 🌟 Overview
 
-**CritEQ** brings mastering-studio precision to desktop system-wide audio. Designed with a minimalist dark obsidian aesthetic, CritEQ allows you to equalize any audio playing on your computer in real time with zero latency overhead and zero virtual driver clutter.
+**CritEQ** brings mastering-studio precision to desktop system-wide audio. Designed with a distinctive **Classic Light Paper Neobrutalism** aesthetic (inspired by [ekmas/neobrutalism-components](https://github.com/ekmas/neobrutalism-components)), CritEQ combines tactile retro-hardware physical controls, chunky high-contrast borders, and clean studio telemetry. It allows you to equalize any audio playing on your computer in real time with zero latency overhead and zero virtual driver clutter.
 
 CritEQ comes bundled with an indexed database of **over 5,900+ headphone & IEM parametric EQ presets** sourced from the world's leading acoustic measurement databases (**AutoEq**, **Crinacle**, **Squiglink**, and **oratory1990**).
 
@@ -55,11 +57,11 @@ CritEQ has been built iteratively with strict adherence to clean-room engineerin
   - Integrated and indexed over 5,900+ headphone and IEM measurement profiles.
   - Built instant client-side fuzzy search across manufacturers, models, and measurement reviewers.
   - Added full two-way Equalizer APO `.peq` and `.txt` import and export capabilities.
-- [x] **Phase 4 — Minimalist Studio Precision Interface**
-  - Clean obsidian canvas (*canvas polos*) that removes visual clutter and overlapping colored bell fills.
-  - Razor-sharp hairline master response curve with subtle studio cyan telemetry.
-  - Hollow precision reticle node handles with vertical alignment drop-guides.
-  - Unified Selected-Band Inspector Dock with simultaneous `Q` and `Octaves` readouts, vector rotary dials, and A/B comparison slots.
+- [x] **Phase 4 — Classic Paper Neobrutalism Interface**
+  - Tactile Neobrutalism design system with warm paper surfaces (`#FAF7F2`), chunky 2px solid black borders, and hard unblurred drop shadows.
+  - Ultra-clean parametric equalizer canvas (*canvas polos*) with tactile node handles and interactive drag acoustics.
+  - Integrated Master Output Bar with A/B slot preset auditioning, global EQ gain intensity scaling (0%–200%), and high-contrast dual L/R peak and RMS meters.
+  - Selected-Band Inspector Dock with simultaneous `Q` and `Octaves` readouts, vector rotary dials, and quick band switching.
 - [ ] **Phase 5 — Windows Porting (In Active Progress 🚧)**
   - Architecting the native Windows audio backend utilizing **Windows Audio Session API (WASAPI)** and **Audio Processing Objects (APO)**.
   - Ensuring seamless cross-platform parity so Windows users can access the same driverless system-wide DSP, 5,900+ IEM presets, and minimalist UI.
